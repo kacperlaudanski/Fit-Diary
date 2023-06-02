@@ -7,7 +7,7 @@ const Input = (props) => {
         <div className="icon-box">
          
         </div>
-        <input type={props.type} placeholder={props.placeholder}></input>
+        <input type={props.type} placeholder={props.placeholder} ref={props.refer}></input>
       </div>
     )
 }

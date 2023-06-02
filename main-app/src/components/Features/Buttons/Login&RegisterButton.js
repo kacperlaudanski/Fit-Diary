@@ -3,7 +3,7 @@ import '../features.css'
 
 const Button = (props) => {
     return (
-        <button className="login-register-button" type='button'>{props.children}</button>
+        <button className="login-register-button" type='button' onClick={props.buttonHandler}>{props.children}</button>
     )
 }
 
