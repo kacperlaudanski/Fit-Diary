@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import LoginButton from "../Features/Buttons/Login&RegisterButton";
@@ -9,6 +9,7 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 
 const Login = () => {
   const firebaseConfigPack = useContext(FirebaseConfig);
+  const navigate = useNavigate();
   const auth = getAuth();
 
   const email = useRef(null);
@@ -22,8 +23,9 @@ const Login = () => {
     )
       .then((cred) => {
         console.log(`${cred.user.email} logged in!`);
-        email.current.value = ''
-        password.current.value = ''
+        email.current.value = "";
+        password.current.value = "";
+        navigate("/main")
       })
       .catch((err) => {
         console.log("sth went wrong :(");

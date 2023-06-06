@@ -16,7 +16,7 @@ const Home = () => {
             <br></br>
             <p className="quotation">Arthur C. Clarke</p>
             <div className="action-buttons">
-              <NavLink><button className="login-button">Log in</button></NavLink>
+              <NavLink to='login'><button className="login-button">Log in</button></NavLink>
               <NavLink to='register'><button className="register-button">Register</button></NavLink>
             </div>
           </div>

@@ -2,16 +2,14 @@ import React, { useContext, useRef } from "react";
 import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import RegisterButton from "../Features/Buttons/Login&RegisterButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./register.css";
 import FirebaseConfig from "../../context/firebase-context";
-import {
-  getAuth,
-  createUserWithEmailAndPassword
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = () => {
   const firebaseConfig = useContext(FirebaseConfig);
+  const navigate = useNavigate()
   const auth = getAuth();
 
   const email = useRef(null);
@@ -25,8 +23,9 @@ const Register = () => {
     )
       .then(() => {
         console.log(`User created ! ${email}`);
-        email.current.value = ''
-        password.current.value = ''
+        email.current.value = "";
+        password.current.value = "";
+        navigate("/get-started")
       })
       .catch((err) => {
         console.log(err);
