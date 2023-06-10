@@ -27,5 +27,28 @@ body .register-container .form-container {
   justify-content: space-around;
   flex-direction: column;
 }
+body .register-container .form-container .register-input-container {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+body .register-container .form-container .register-input-container .icon-container {
+  width: 7%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(148, 148, 148);
+}
+body .register-container .form-container .register-input-container .register-input {
+  width: 93%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
 
 /*# sourceMappingURL=register.css.map */

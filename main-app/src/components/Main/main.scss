@@ -34,8 +34,16 @@
             height:40px; 
             margin:.5em;
         }
-
-   
+        .create-training-button{
+            width:20%; 
+            margin:.5em;
+            height:40px;
+            background-color: lightcoral;
+            border:none;
+            border-radius:10px;
+            color:#fff;
+            cursor:pointer;
+        }
 
        }
     }
@@ -56,13 +64,3 @@
   }
 }
 
-.create-training-button{
-    width:20%; 
-    margin:.5em;
-    height:40px;
-    background-color: lightcoral;
-    border:none;
-    border-radius:10px;
-    color:#fff;
-    cursor:pointer;
-}

@@ -25,18 +25,22 @@ const Main = () => {
   };
 
   async function addTrainingHandler() {
-    const response = await fetch(
-      "https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/trainings.json",
-      {
-        method: "POST",
-        body: JSON.stringify(training),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+    try {
+      const response = await fetch(
+        "https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/trainings.json",
+        {
+          method: "POST",
+          body: JSON.stringify(training),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      throw new Error(`Error: ${err.message}`);
+    }
   }
 
   async function fetchTrainings() {
@@ -54,15 +58,15 @@ const Main = () => {
           trainingName: data[key].name,
         });
       }
-      updateTrainings(loadedTrainings); 
+      updateTrainings(loadedTrainings);
     } catch (err) {
       throw new Error(`Error: ${err}`);
     }
   }
 
   useEffect(() => {
-    fetchTrainings()
-  }, [])
+    fetchTrainings();
+  }, []);
 
   return (
     <main className="main-container">
@@ -90,15 +94,15 @@ const Main = () => {
           </button>
         </Form>
       </div>
-      <TrainingList onClick = {fetchTrainings}>
+      <TrainingList onClick={fetchTrainings}>
         {trainings.map((training, id) => {
-            return(
-                <TrainingCard 
-                    key = {id}
-                    date = {training.trainingDate}
-                    title = {training.trainingName}
-                />
-            )
+          return (
+            <TrainingCard
+              key={id}
+              date={training.trainingDate}
+              title={training.trainingName}
+            />
+          );
         })}
       </TrainingList>
     </main>
