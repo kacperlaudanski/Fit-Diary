@@ -5,59 +5,108 @@
   overflow: auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 .main-container {
   width: 100%;
   min-height: 100vh;
-  background-color: antiquewhite;
+  background-color: #22223b;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.main-container .add-training-container, .main-container .training-list {
+.main-container .add-training-container,
+.main-container .training-list {
   margin-top: 4em;
   width: 60%;
   height: 40vh;
-  background-color: rgb(91, 91, 153);
+  background-color: rgba(166, 166, 166, 0.5764705882);
   border-radius: 15px;
   box-sizing: border-box;
   padding: 2em;
   color: #fff;
 }
-.main-container .add-training-container .add-training-form, .main-container .training-list .add-training-form {
+.main-container .add-training-container .add-training-form,
+.main-container .training-list .add-training-form {
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 2em;
 }
-.main-container .add-training-container .add-training-form .training-input, .main-container .training-list .add-training-form .training-input {
+.main-container .add-training-container .add-training-form .training-input,
+.main-container .training-list .add-training-form .training-input {
   width: 50%;
   height: 40px;
   margin: 0.5em;
 }
-.main-container .training-list {
-  min-height: 50vh;
-  margin: 3em 0;
-}
-.main-container .training-list .training-card {
-  width: 70%;
-  height: 100px;
-  color: #000;
-  background-color: aliceblue;
-  margin-top: 2em;
-  border-radius: 15px;
-  box-sizing: border-box;
-  padding: 1em;
-}
-
-.create-training-button {
+.main-container .add-training-container .add-training-form .create-training-button,
+.main-container .training-list .add-training-form .create-training-button {
   width: 20%;
   margin: 0.5em;
   height: 40px;
-  background-color: lightcoral;
+  background-color: #c9ada7;
   border: none;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
+}
+.main-container .training-list {
+  min-height: 50vh;
+  margin: 3em 0;
+  z-index: 0;
+}
+.main-container .training-list .training-card-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.main-container .training-list .training-card-container .training-card {
+  width: 100%;
+  height: 120px;
+  color: rgb(255, 255, 255);
+  background-color: #4a4e69;
+  margin-top: 2em;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 1em;
+  overflow: hidden;
+  z-index: 1;
+}
+.main-container .training-list .training-card-container .training-card .training-card-date {
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+  margin: 0.5em 0;
+  width: 20%;
+  height: 30px;
+  background-color: rgba(255, 255, 255, 0.292);
+  box-sizing: border-box;
+  padding: 0.5em;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.main-container .training-list .training-card-container .training-card .training-card-date .date {
+  margin-left: 0.5em;
+}
+.main-container .training-list .training-card-container .add-training-button {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  top: -15px;
+  z-index: 0;
+  border-radius: 0 0 15px 15px;
+  border: none;
+  box-sizing: border-box;
+  padding-top: 1em;
+  background-color: #c9ada7;
+  color: #fff;
+  transition: 0.3s linear;
+}
+.main-container .training-list .training-card-container .add-training-button:hover {
+  background-color: rgba(201, 173, 167, 0.6745098039) !important;
+  cursor: pointer !important;
 }
 
 /*# sourceMappingURL=main.css.map */

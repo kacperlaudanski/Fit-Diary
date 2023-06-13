@@ -9,13 +9,10 @@ import { AuthContext } from "./context/auth-context";
 
 
 function App() {
-  const {currentUser, dispatch} = useContext(AuthContext); 
-
+  const {currentUser} = useContext(AuthContext); 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/login" />;
   };
-
-  console.log(currentUser)
 
   return (
     <BrowserRouter>

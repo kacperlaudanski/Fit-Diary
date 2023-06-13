@@ -1,14 +1,12 @@
 import React from "react";
 import '../features.css' 
 
-const Navbar = () => {
+const Navbar = (props) => {
     return (
         <nav className="navbar">
-          <h2>Logolink</h2>
+          <h2>FitDiary</h2>
           <ul className="tabs">
-             <li>Home</li>
-             <li>About</li>
-             <li>Trainings</li>
+            {props.children}
           </ul>
         </nav>
     )

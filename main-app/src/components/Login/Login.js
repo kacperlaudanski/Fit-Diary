@@ -11,13 +11,12 @@ import { AuthContext } from "../../context/auth-context";
 
 const Login = () => {
   const firebaseConfigPack = useContext(FirebaseConfig);
-  const {currentUser, dispatch} = useContext(AuthContext); 
+  const {dispatch} = useContext(AuthContext); 
   const navigate = useNavigate();
   const auth = getAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  //const [isRemembered, setRememberMe] = useState(false);
 
   function emailHandler(event) {
     setEmail(event.target.value);
@@ -26,28 +25,6 @@ const Login = () => {
   function passwordHandler(event) {
     setPassword(event.target.value);
   }
-
-  /*function rememberMeHandler() {
-    setRememberMe((prev) => {
-      return !prev;
-    });
-    if (isRemembered) {
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
-      localStorage.setItem("checkbox", isRemembered)
-    } 
-    if (!isRemembered){
-      localStorage.removeItem("email");
-      localStorage.removeItem("password");
-      localStorage.removeItem("checkbox")
-    }
-  }*/
-
-  useEffect(() => {
-    setEmail(localStorage.getItem("email"))
-    setPassword(localStorage.getItem("password"))
-   // setRememberMe(localStorage.getItem("checkbox"))
-  }, [])
 
   function login() {
     signInWithEmailAndPassword(auth, email, password)
@@ -77,7 +54,6 @@ const Login = () => {
               iconboxClass="icon-container"
               inputClass="login-input"
               icon={faEnvelope}
-             // value = {localStorage.getItem("email")}
             />
             <Input
               type="password"
@@ -87,12 +63,11 @@ const Login = () => {
               iconboxClass="icon-container"
               inputClass="login-input"
               icon={faKey}
-             // value = {localStorage.getItem("password")}
             />
             <LoginButton buttonHandler={login}>Log in</LoginButton>
             <div className="login-options">
               <div className="remember-me">
-                <input type="checkbox" /*onChange={rememberMeHandler} checked = {isRemembered}*/></input>
+                <input type="checkbox"></input>
                 <label>Remember me</label>
               </div>
               <NavLink to="/register">Don't have an account ?</NavLink>

@@ -1,15 +1,18 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import "./main.scss";
 import Navbar from "../Features/Navbar/Navbar";
 import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import TrainingList from "./TrainingList";
 import TrainingCard from "./TrainingCard";
+import { AuthContext } from "../../context/auth-context";
 
 const Main = () => {
   const [trainingDate, updateDate] = useState("");
   const [trainingName, updateTrainingName] = useState("");
   const [trainings, updateTrainings] = useState([]);
+
+  const {currentUser} = useContext(AuthContext); 
 
   const training = {
     date: trainingDate,
@@ -27,7 +30,7 @@ const Main = () => {
   async function addTrainingHandler() {
     try {
       const response = await fetch(
-        "https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/trainings.json",
+        `https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/${currentUser.uid}.json`,
         {
           method: "POST",
           body: JSON.stringify(training),
@@ -46,7 +49,7 @@ const Main = () => {
   async function fetchTrainings() {
     try {
       const response = await fetch(
-        "https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/trainings.json"
+        `https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/${currentUser.uid}.json`
       );
       const data = await response.json();
       const loadedTrainings = [];
@@ -66,7 +69,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchTrainings();
-  }, []);
+  }, [trainings]);
 
   return (
     <main className="main-container">

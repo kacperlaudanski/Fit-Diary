@@ -9,58 +9,84 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
+  overflow: hidden;
 }
 .container .content-container {
-  width: 60%;
-  height: 100%;
-  background-color: #1f1f1f;
+  display: flex;
+  justify-content: flex-start;
+  align-items: left;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4.375em;
+  margin-top: 7em;
+  color: #fff;
+  overflow: hidden;
+}
+.container .content-container .text-container {
+  width: 50%;
+  font-family: "Roboto", sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 3em;
-  text-align: center;
+  overflow: hidden;
 }
-.container .content-container .logo {
+.container .content-container .text-container h1 {
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+.container .content-container .text-container p {
+  margin-top: 1.5em;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 25px;
+  overflow: hidden;
+}
+.container .content-container .text-container p span {
   font-family: "Pacifico", cursive;
-  color: #FFFDED;
-  font-size: 4rem;
-  margin: 1em;
 }
-.container .content-container .quotation {
-  font-family: "Roboto", sans-serif;
-  font-size: 2rem;
-  color: #FCE762;
-  font-style: italic;
-}
-.container .content-container .action-buttons {
-  margin-top: 5em;
-  width: 70%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-.container .content-container .action-buttons button {
-  width: 40%;
+.container .content-container .text-container .get-started-button {
+  width: 25%;
   height: 50px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-family: "Roboto", sans-serif;
-  cursor: pointer;
-  background-color: #FFFDED;
-  transition: linear 0.2s;
+  border-radius: 25px;
+  border: 1px solid #fff;
+  background-color: rgb(255, 133, 208);
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s linear;
+  margin-top: 2em;
 }
-.container .content-container .action-buttons button:hover {
-  background-color: #FCE762;
+.container .content-container .text-container .social-media {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-top: 5em;
+  position: relative;
+  left: 0;
+  bottom: 0;
 }
-.container .decoration-container {
-  width: 60%;
-  height: 100%;
+.container .content-container .text-container .social-media .social-media-icon {
+  font-size: 1.5rem;
 }
-.container .decoration-container .decoration-image {
-  width: 100%;
-  height: 100%;
-  margin: 0;
+.container .content-container .image-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.container .content-container .image-container .decoration {
+  width: 50%;
+  height: auto;
+  text-align: center;
+  position: absolute;
+  top: 3em;
+  right: 0;
 }
 
 /*# sourceMappingURL=home.css.map */
