@@ -6,10 +6,6 @@ import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 
 const TrainingCard = (props) => {
 
-  function excerciseHandler(){
-    
-  }
-
   return (
   <div className="training-card-container">
     <div className="training-card">
@@ -19,7 +15,7 @@ const TrainingCard = (props) => {
       </div>
       <h1 className="training-card-title">{props.title}</h1>
     </div>
-    <AddEx onClick={excerciseHandler}/> 
+    <AddEx onClick={props.onClick}/> 
   </div>
 
   );

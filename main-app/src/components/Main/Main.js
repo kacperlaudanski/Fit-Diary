@@ -6,11 +6,14 @@ import Input from "../Features/Input/Input";
 import TrainingList from "./TrainingList";
 import TrainingCard from "./TrainingCard";
 import { AuthContext } from "../../context/auth-context";
+import FormBackdrop from "../Features/Modal/ModalForm";
 
 const Main = () => {
   const [trainingDate, updateDate] = useState("");
   const [trainingName, updateTrainingName] = useState("");
   const [trainings, updateTrainings] = useState([]);
+  const [isExcerciseFormSelected, setExcerciseForm] = useState(false)
+
 
   const {currentUser} = useContext(AuthContext); 
 
@@ -26,6 +29,14 @@ const Main = () => {
   const handleNameChange = (event) => {
     updateTrainingName(event.target.value);
   };
+
+  const modalFormHandler = () => {
+    setExcerciseForm(false)
+  }
+
+  const excerciseAddFormHandler = () => {
+    setExcerciseForm(true)
+  }
 
   async function addTrainingHandler() {
     try {
@@ -74,6 +85,7 @@ const Main = () => {
   return (
     <main className="main-container">
       <Navbar />
+      {isExcerciseFormSelected && <FormBackdrop onClick = {modalFormHandler}/>}
       <div className="add-training-container">
         <h2>+ Add new training</h2>
         <Form className="add-training-form">
@@ -104,6 +116,7 @@ const Main = () => {
               key={id}
               date={training.trainingDate}
               title={training.trainingName}
+              onClick = {excerciseAddFormHandler}
             />
           );
         })}

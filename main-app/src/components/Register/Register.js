@@ -7,6 +7,7 @@ import "./register.css";
 import FirebaseConfig from "../../context/firebase-context";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { faUser, faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 const Register = () => {
   const firebaseConfig = useContext(FirebaseConfig);
@@ -15,6 +16,8 @@ const Register = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  library.add(faUser, faEnvelope, faKey)
 
   function emailHandler(event) {
     setEmail(event.target.value);

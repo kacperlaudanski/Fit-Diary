@@ -6,7 +6,7 @@ const Input = (props) => {
   return (
     <div className={props.className}>
       <div className={props.iconboxClass}>
-        <FontAwesomeIcon icon={props.icon}/> 
+       { /*<FontAwesomeIcon icon={props.icon}/> */}
       </div>
       <input
         type={props.type}

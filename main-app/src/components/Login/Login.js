@@ -6,6 +6,7 @@ import LoginButton from "../Features/Buttons/Login&RegisterButton";
 import "./login.css";
 import FirebaseConfig from "../../context/firebase-context";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth-context";
 
@@ -17,6 +18,8 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  library.add(faEnvelope, faKey)
 
   function emailHandler(event) {
     setEmail(event.target.value);

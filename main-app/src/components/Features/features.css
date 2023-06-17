@@ -50,4 +50,61 @@
   background-color: rgba(131, 58, 180, 0.565);
 }
 
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.469);
+  z-index: 999;
+  position: fixed;
+}
+
+.modal-form-container {
+  width: 60%;
+  height: 500px;
+  box-sizing: border-box;
+  padding: 2em;
+  background-color: rgba(181, 181, 181, 0.9058823529);
+  border-radius: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.modal-form-container h1 {
+  color: #fff;
+  margin-bottom: 2em;
+}
+.modal-form-container .modal-form {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.modal-form-container .modal-form .ex-add-input-container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 2em;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+}
+.modal-form-container .modal-form .ex-add-input-container .ex-icon {
+  width: 7%;
+  height: 40px;
+}
+.modal-form-container .modal-form .ex-add-input-container .ex-input {
+  width: 93%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+.modal-form-container .modal-form .add-excercise-button {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: aquamarine;
+  color: #fff;
+}
+
 /*# sourceMappingURL=features.css.map */

@@ -3,6 +3,7 @@ import Navbar from "../Features/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import Image from "../../images/man.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTwitter,
   faInstagram,
@@ -13,6 +14,9 @@ import {
 import "./home.css";
 
 const Home = () => {
+
+library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
+
   return (
     <React.Fragment>
       <div className="container">
@@ -62,7 +66,7 @@ const Home = () => {
                   icon={faLinkedin}
                   className="social-media-icon"
                 />
-              </a>
+              </a>  
             </footer>
           </div>
           <div className="image-container">
