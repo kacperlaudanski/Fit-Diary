@@ -11,7 +11,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
-import "./home.css";
+import styles from "./styles/home.module.css";
 
 const Home = () => {
 
@@ -19,18 +19,18 @@ library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
 
   return (
     <React.Fragment>
-      <div className="container">
-        <Navbar>
+      <div className={styles.home_container}>
+        <Navbar elementsClass = {styles.home_navbar}>
           <li>About Us</li>
           <li>Support</li>
           <li>Contact</li>
-          <NavLink className="navbar-login-button" to="/login">
+          <NavLink className={styles.navbar_login_button} to="/login">
             Login
           </NavLink>
         </Navbar>
 
-        <div className="content-container">
-          <div className="text-container">
+        <div className={styles.content_container}>
+          <div className={styles.text_container}>
             <h1>The Best Way To Enhance Your Training</h1>
             <p>
               Achieve your fitness goals with ease using our user-friendly
@@ -39,38 +39,38 @@ library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
               achievements. Start your fitness journey now with our{" "}
               <span>FitDiary</span>!
             </p>
-            <NavLink className="get-started-button" to="/register">
+            <NavLink className={styles.get_started_button} to="/register">
               Get started
             </NavLink>
-            <footer className="social-media">
+            <footer className={styles.social_media_container}>
               <a>
                 <FontAwesomeIcon
                   icon={faTwitter}
-                  className="social-media-icon"
+                  className={styles.social_media_icon}
                 />
               </a>
               <a>
                 <FontAwesomeIcon
                   icon={faInstagram}
-                  className="social-media-icon"
+                  className={styles.social_media_icon}
                 />
               </a>
               <a>
                 <FontAwesomeIcon
                   icon={faYoutube}
-                  className="social-media-icon"
+                  className={styles.social_media_icon}
                 />
               </a>
               <a>
                 <FontAwesomeIcon
                   icon={faLinkedin}
-                  className="social-media-icon"
+                  className={styles.social_media_icon}
                 />
               </a>  
             </footer>
           </div>
-          <div className="image-container">
-            <img src={Image} alt="decoration" className="decoration"></img>
+          <div className={styles.image_container}>
+            <img src={Image} alt="decoration"></img>
           </div>
         </div>
       </div>

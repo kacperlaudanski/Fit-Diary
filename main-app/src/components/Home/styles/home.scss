@@ -1,0 +1,130 @@
+@mixin flex-setup($align-items, $justify-content){
+  display:flex; 
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+$border-font-color: rgb(255,255,255); 
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.home_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  overflow: hidden;
+
+  .home_navbar {
+    width: 40%;
+    list-style: none;
+    @include flex-setup(center, space-between); 
+    color: $border-font-color;
+
+    .navbar_login_button {
+      width: 20%;
+      height: 40px;
+      border: 1px solid $border-font-color;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.159);
+      color: $border-font-color;
+      text-decoration: none;
+      @include flex-setup(center, center);
+      transition: 0.3s linear;
+    }
+
+    .navbar_login_button:hover {
+      background-color: rgba(131, 58, 180, 0.565);
+    }
+  }
+
+  .content_container {
+    @include flex-setup(left, flex-start); 
+    width: 100%;
+    box-sizing: border-box;
+    padding: 4.375em;
+    margin-top: 7em;
+    color: $border-font-color;
+    overflow: hidden;
+
+    .text_container {
+      width: 50%;
+      font-family: "Roboto", sans-serif;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+
+      h1 {
+        font-size: 3rem;
+        letter-spacing: 3px;
+      }
+
+      p {
+        margin-top: 1.5em;
+        font-size: 1.1rem;
+        font-weight: 300;
+        line-height: 25px;
+        overflow: hidden;
+
+        span {
+          font-family: "Pacifico", cursive;
+        }
+      }
+
+      .get_started_button {
+        width: 25%;
+        height: 50px;
+        border-radius: 25px;
+        border: 1px solid $border-font-color;
+        background-color: rgb(255, 133, 208);
+        color: $border-font-color;
+        text-decoration: none;
+        @include flex-setup(center, center); 
+        transition: 0.3s linear;
+        margin-top: 2em;
+      }
+
+      .social_media_container {
+        width: 40%;
+        @include flex-setup(center, space-between);
+        font-size: 1.2rem;
+        margin-top: 5em;
+        position: relative;
+        left: 0;
+        bottom: 0;
+
+        a{
+          color:$border-font-color; 
+        }
+
+        .social_media_icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .image_container {
+      width: 50%;
+      @include flex-setup(center, center);
+      overflow: hidden;
+
+      img {
+        width: 50%;
+        height: 90%;
+        position: absolute;
+        top: 4em;
+        right: 0;
+      }
+    }
+  }
+}

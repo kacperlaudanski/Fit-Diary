@@ -1,11 +1,11 @@
 import React from "react";
-import '../features.css' 
+import styles from './styles/navbar.module.css' 
 
 const Navbar = (props) => {
     return (
-        <nav className="navbar">
+        <nav className={styles.navbar}>
           <h2>FitDiary</h2>
-          <ul className="tabs">
+          <ul className={props.elementsClass}>
             {props.children}
           </ul>
         </nav>

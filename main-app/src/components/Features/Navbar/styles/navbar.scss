@@ -1,0 +1,25 @@
+@mixin flex-setup($align-items, $justify-content){
+    display:flex; 
+    align-items: $align-items;
+    justify-content: $justify-content;
+}
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  margin-top: 1.1em;
+  box-sizing: border-box;
+  padding: 0 4.375em;
+  @include flex-setup(center, space-between); 
+  position: relative;
+  overflow: hidden;
+
+  h2 {
+    font-family: "Pacifico", cursive;
+    color: #fff;
+    font-size: 1.7rem;
+    margin: 1em;
+  }
+}
+
+

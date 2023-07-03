@@ -1,26 +1,96 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
-import "./main.scss";
+import React, { useState, useContext, useReducer, useCallback } from "react";
+import styles from "./styles/main.module.css";
 import Navbar from "../Features/Navbar/Navbar";
-import Form from "../Features/Form/FormWrapper";
-import Input from "../Features/Input/Input";
-import TrainingList from "./TrainingList";
-import TrainingCard from "./TrainingCard";
+import TrainingList from "./Card/TrainingList";
+import TrainingCard from "./Card/TrainingCard";
 import { AuthContext } from "../../context/auth-context";
-import FormBackdrop from "../Features/Modal/ModalForm";
+import TrainingForm from "../Features/Modal/ModalTrainingForm";
+import ExcerciseForm from "../Features/Modal/ModalExcerciseForm";
+import { v4 as uuidv4 } from "uuid";
+import UserAvatar from "../../images/user.png";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Footer from "../Features/Footer/Footer";
+import {
+  collection,
+  doc,
+  setDoc,
+  deleteDoc,
+  updateDoc,
+} from "@firebase/firestore";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { db } from "../../context/firebase-context";
+import ExcerciseList from "./Card/ExcerciseList";
+import ButtonSearch from "./Button-Search-Bar";
+
+const ExcerciseReducer = (state, action) => {
+  switch (action.type) {
+    case "EXCERCISE":
+      return { ...state, name: action.payload };
+    case "SERIES":
+      return { ...state, series: action.payload };
+    case "REPS":
+      return { ...state, reps: action.payload };
+    case "LOADING":
+      return { ...state, loading: action.payload };
+    default:
+      return state;
+  }
+};
 
 const Main = () => {
   const [trainingDate, updateDate] = useState("");
   const [trainingName, updateTrainingName] = useState("");
-  const [trainings, updateTrainings] = useState([]);
-  const [isExcerciseFormSelected, setExcerciseForm] = useState(false)
+  const [isTrainingFormSelected, setTrainingForm] = useState(false);
+  const [isExcerciseFormSelected, setExcerciseForm] = useState(false);
+  const [currentTraining, setCurrentTraining] = useState("");
+  const [isUserEditing, setEditState] = useState(false);
+  const [currentEx, setCurrentEx] = useState("");
 
+  const [searchQuery, setQuery] = useState("");
 
-  const {currentUser} = useContext(AuthContext); 
+  const DEFAULT_EXCERCISE = {
+    excerciseId: null,
+    name: "",
+    series: null,
+    reps: null,
+    loading: null,
+    volume: null,
+  };
+
+  const [state, dispatch] = useReducer(ExcerciseReducer, DEFAULT_EXCERCISE);
+
+  const { currentUser } = useContext(AuthContext);
+
+  const uuid = uuidv4();
 
   const training = {
+    trainingId: uuid,
     date: trainingDate,
     name: trainingName,
   };
+
+  const excercise = {
+    excerciseId: uuid,
+    name: state.name,
+    series: state.series,
+    reps: state.reps,
+    loading: state.loading,
+    volume: Math.round(state.series * state.reps * state.loading),
+  };
+
+  const trainingsQuery = useCallback(
+    collection(db, `users/${currentUser.uid}/Trainings`),
+    [collection]
+  );
+  const [loadedTrainings, trainingLoading, trainingError] =
+    useCollectionData(trainingsQuery);
+
+  const filteredTrainings = loadedTrainings?.filter((training) => {
+    return training.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+  console.log(filteredTrainings);
 
   const handleDateChange = (event) => {
     updateDate(event.target.value);
@@ -30,97 +100,160 @@ const Main = () => {
     updateTrainingName(event.target.value);
   };
 
-  const modalFormHandler = () => {
-    setExcerciseForm(false)
+  const excerciseHandler = (event) => {
+    dispatch({ type: "EXCERCISE", payload: event.target.value });
+  };
+
+  const seriesHandler = (event) => {
+    dispatch({ type: "SERIES", payload: event.target.value });
+  };
+
+  const repsHandler = (event) => {
+    dispatch({ type: "REPS", payload: event.target.value });
+  };
+
+  const loadingHandler = (event) => {
+    dispatch({ type: "LOADING", payload: event.target.value });
+  };
+
+  const modalExcerciseFormHandler = async () => {
+    const docRef = await doc(
+      db,
+      `users/${currentUser.uid}/Trainings/${currentTraining}/Excercises`,
+      excercise.excerciseId
+    );
+    await setDoc(docRef, excercise);
+    setExcerciseForm(false);
+  };
+
+  const addTrainingHandler = async () => {
+    const docRef = doc(
+      db,
+      `users/${currentUser.uid}/Trainings`,
+      training.trainingId
+    );
+    await setDoc(docRef, training);
+    setTrainingForm(false);
+  };
+
+  const trainingAddFormHandler = () => {
+    setTrainingForm(true);
+  };
+
+  const excerciseAddFormHandler = (event) => {
+    setEditState(false);
+    setCurrentTraining(event.target.id);
+    setExcerciseForm(true);
+  };
+
+  const auth = getAuth();
+  const navigate = useNavigate();
+
+  function logoutHandler() {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem("user");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
 
-  const excerciseAddFormHandler = () => {
-    setExcerciseForm(true)
+  function cancelTrainingHandler() {
+    setTrainingForm(false);
   }
 
-  async function addTrainingHandler() {
-    try {
-      const response = await fetch(
-        `https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/${currentUser.uid}.json`,
-        {
-          method: "POST",
-          body: JSON.stringify(training),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      throw new Error(`Error: ${err.message}`);
-    }
+  function cancelExcerciseHandler() {
+    setExcerciseForm(false);
   }
 
-  async function fetchTrainings() {
-    try {
-      const response = await fetch(
-        `https://fitdiary-ffe99-default-rtdb.europe-west1.firebasedatabase.app/${currentUser.uid}.json`
-      );
-      const data = await response.json();
-      const loadedTrainings = [];
-
-      for (const key in data) {
-        loadedTrainings.push({
-          id: key,
-          trainingDate: data[key].date,
-          trainingName: data[key].name,
-        });
-      }
-      updateTrainings(loadedTrainings);
-    } catch (err) {
-      throw new Error(`Error: ${err}`);
-    }
+  async function editTrainingHandler(event) {
+    console.log(event.target.id);
+    setCurrentTraining(event.target.id);
   }
 
-  useEffect(() => {
-    fetchTrainings();
-  }, [trainings]);
+  async function deleteTrainingHandler(event) {
+    console.log(event.target.id);
+    await deleteDoc(
+      doc(db, `users/${currentUser.uid}/Trainings`, event.target.id)
+    );
+  }
+
+  /*async function editEx() {
+    await updateDoc(
+      doc(
+        db,
+        `users/${currentUser.uid}/Trainings/${currentTraining}/Excercises/${currentEx}`,
+        { excercise }
+      )
+    );
+    setExcerciseForm(false);
+  }*/
 
   return (
-    <main className="main-container">
-      <Navbar />
-      {isExcerciseFormSelected && <FormBackdrop onClick = {modalFormHandler}/>}
-      <div className="add-training-container">
-        <h2>+ Add new training</h2>
-        <Form className="add-training-form">
-          <Input
-            type="date"
-            onChange={handleDateChange}
-            inputClass="training-input"
-          />
-          <Input
-            type="text"
-            onChange={handleNameChange}
-            inputClass="training-input"
-            placeholder="Training Title"
-          />
-          <button
-            className="create-training-button"
-            type="button"
-            onClick={addTrainingHandler}
-          >
-            Create new training
-          </button>
-        </Form>
-      </div>
-      <TrainingList onClick={fetchTrainings}>
-        {trainings.map((training, id) => {
+    <main className={styles.main_container}>
+      <Navbar elementsClass={styles.main_navbar}>
+        <img
+          src={UserAvatar}
+          alt="user-avatar"
+          className={styles.navbar_user_avatar}
+        ></img>
+        <button className={styles.logout_button} type="button" onClick={logoutHandler}>
+          Log out
+        </button>
+      </Navbar>
+      {isTrainingFormSelected && (
+        <TrainingForm
+          handleDateChange={handleDateChange}
+          handleNameChange={handleNameChange}
+          addTrainingHandler={addTrainingHandler}
+          cancelHandler={cancelTrainingHandler}
+        />
+      )}
+      {isExcerciseFormSelected && (
+        <ExcerciseForm
+          onClick={/*isUserEditing ? editEx :*/ modalExcerciseFormHandler}
+          onExcerciseChange={excerciseHandler}
+          onSeriesChange={seriesHandler}
+          onRepsChange={repsHandler}
+          onLoadingChange={loadingHandler}
+          cancelHandler={cancelExcerciseHandler}
+        />
+      )}
+      <ButtonSearch
+        trainingAddFormHandler={trainingAddFormHandler}
+        query={searchQuery}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+      <TrainingList>
+        {filteredTrainings?.map((training, index) => {
           return (
             <TrainingCard
-              key={id}
-              date={training.trainingDate}
-              title={training.trainingName}
-              onClick = {excerciseAddFormHandler}
-            />
+              key={training.trainingId}
+              date={training.date}
+              title={training.name}
+              onClick={excerciseAddFormHandler}
+              editBtnId={training.trainingId}
+              deleteBtnId={training.trainingId}
+              editHandler={editTrainingHandler}
+              deleteHandler={deleteTrainingHandler}
+              exBtnId={training.trainingId}
+            >
+              <ExcerciseList
+                path={`users/${currentUser.uid}/Trainings/${training.trainingId}/Excercises`}
+                editExHandler={(event) => {
+                  setCurrentEx(event.target.id);
+                  setCurrentTraining(training.trainingId);
+                  setExcerciseForm(true);
+                  setEditState(true);
+                }}
+              />
+            </TrainingCard>
           );
         })}
       </TrainingList>
+      <Footer />
     </main>
   );
 };

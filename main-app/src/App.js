@@ -16,7 +16,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <main>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/register" element={<Register />} />
@@ -31,7 +30,6 @@ function App() {
             }
           />
         </Routes>
-      </main>
     </BrowserRouter>
   );
 }

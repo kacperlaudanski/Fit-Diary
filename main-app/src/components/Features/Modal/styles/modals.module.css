@@ -1,0 +1,123 @@
+.overlay {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.469);
+  z-index: 999;
+  position: fixed;
+}
+
+.add_ex_container {
+  width: 60%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 2em;
+  background-color: rgb(74, 78, 105);
+  color: rgb(255, 255, 255);
+  border-radius: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.add_ex_container h1 {
+  color: rgb(255, 255, 255);
+  margin-bottom: 2em;
+}
+.add_ex_container .add_ex_form {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+.add_ex_container .add_ex_form .ex_add_input_container {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 2em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+}
+.add_ex_container .add_ex_form .ex_add_input_container .ex_icon {
+  width: 9%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b7b7b7;
+}
+.add_ex_container .add_ex_form .ex_add_input_container .ex_input {
+  width: 91%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+
+.add_training_container {
+  width: 60%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 2em;
+  color: rgb(255, 255, 255);
+  background-color: rgb(74, 78, 105);
+  border-radius: 15px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+.add_training_container .add_training_form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+.add_training_container .add_training_form .training_input_group {
+  width: 50%;
+  height: 40px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+  margin: 0.5em 0;
+}
+.add_training_container .add_training_form .training_input_group .icon_box {
+  width: 7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b7b7b7;
+}
+.add_training_container .add_training_form .training_input_group .training_input {
+  width: 93%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+
+.buttons_container {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.buttons_container button {
+  width: 45%;
+  height: 40px;
+  background-color: rgb(183, 2, 255);
+  transition: linear 0.3s;
+  border: none;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.buttons_container .cancel_button {
+  background: none;
+  border: 1px solid rgb(255, 255, 255);
+}
+.buttons_container button:hover {
+  background-color: rgba(183, 2, 255, 0.665);
+}
+
+/*# sourceMappingURL=modals.module.css.map */

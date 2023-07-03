@@ -1,11 +1,12 @@
 import React from "react";
+import styles from './styles/loader.module.css'
 
 const Loader = () => {
   return (
-    <div class='container'>
-      <div class='top'></div> 
-      <div class='middle'></div> 
-      <div class='bottom'></div> 
+    <div className={styles.container}>
+      <div className={styles.top}></div> 
+      <div className={styles.middle}></div> 
+      <div className={styles.bottom}></div> 
     </div> 
   )
 }

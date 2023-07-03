@@ -1,0 +1,9 @@
+.error_message {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+/*# sourceMappingURL=error-message.module.css.map */
