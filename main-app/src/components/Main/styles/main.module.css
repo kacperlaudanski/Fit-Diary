@@ -38,6 +38,7 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s linear;
+  cursor: pointer;
 }
 .main_container .main_navbar .logout_button:hover {
   background-color: rgba(131, 58, 180, 0.565);
@@ -62,6 +63,7 @@
   border: 1px solid #fff;
   color: #fff;
   transition: 0.3s linear;
+  cursor: pointer;
 }
 .main_container .button_search_container .add_training_button:hover {
   background-color: rgba(247, 164, 116, 0.552);

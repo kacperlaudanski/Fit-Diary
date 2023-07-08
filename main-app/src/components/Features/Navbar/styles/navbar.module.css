@@ -1,6 +1,14 @@
+:root {
+  --bar-width: 50px;
+  --bar-height: 8px;
+  --hamburger-gap: 6px;
+  --animation-timing: 200ms ease-in-out;
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+}
+
 .navbar {
   width: 100%;
-  height: 80px;
+  height: auto;
   margin-top: 1.1em;
   box-sizing: border-box;
   padding: 0 4.375em;
@@ -10,6 +18,72 @@
   position: relative;
   overflow: hidden;
 }
+.navbar .home_navbar {
+  width: 40%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  transition: 0.3s linear;
+}
+.navbar .home_navbar .navbar_login_button {
+  width: 20%;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.159);
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear;
+}
+.navbar .home_navbar .navbar_login_button:focus {
+  background-color: rgba(131, 58, 180, 0.565);
+}
+.navbar .hamburger_menu::before,
+.navbar .hamburger_menu::after,
+.navbar .hamburger_menu input {
+  content: "";
+  width: var(--bar-width);
+  height: var(--bar-height);
+  background-color: rgb(255, 255, 255);
+  border-radius: 9999px;
+  transform-origin: left center;
+  transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), display var(--animation-timing), background-color var(--animation-timing);
+}
+.navbar .hamburger_menu {
+  display: none;
+  flex-direction: column;
+  gap: var(--hamburger-gap);
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: absolute;
+  right: 1em;
+  z-index: 999;
+}
+.navbar .hamburger_menu input {
+  appearance: none;
+  pointer-events: none;
+  outline: none;
+}
+.navbar .hamburger_menu:has(input:checked)::before {
+  rotate: 45deg;
+  width: 50px;
+  translate: 0 calc(var(--bar-height) / -2);
+}
+.navbar .hamburger_menu:has(input:checked)::after {
+  rotate: -45deg;
+  width: 50px;
+  translate: 0 calc(var(--bar-height) / 2);
+}
+.navbar .hamburger_menu input:checked {
+  opacity: 0;
+  width: 0;
+}
 .navbar h2 {
   font-family: "Pacifico", cursive;
   color: #fff;
@@ -17,10 +91,37 @@
   margin: 1em;
 }
 
-.navbar_user_avatar {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+@media (width < 850px) {
+  .navbar {
+    padding: 0 1em;
+  }
+  .navbar .home_navbar {
+    display: none;
+  }
+  .navbar .home_navbar .navbar_login_button {
+    width: 40%;
+    height: 50px;
+  }
+  .navbar .hamburger_menu:has(input:checked) + .home_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(84, 84, 84, 0.74);
+    z-index: 2;
+    font-size: 1.5rem;
+  }
+  .navbar .hamburger_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=navbar.module.css.map */

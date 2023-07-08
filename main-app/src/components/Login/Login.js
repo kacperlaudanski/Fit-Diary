@@ -4,12 +4,12 @@ import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import LoginButton from "../Features/Buttons/Login&RegisterButton";
 import styles from "./styles/login.module.css";
-import buttonStyle from '../Features/Buttons/styles/buttons.module.css'
 import FirebaseConfig from "../../context/firebase-context";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { faEnvelope, faKey, faLeaf } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth-context";
 import WorkoutImg from "../../images/workout.png";
+import Navbar from "../Features/Navbar/Navbar";
 
 const Login = () => {
   const firebaseConfigPack = useContext(FirebaseConfig);
@@ -20,35 +20,27 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [emailValidation, setEmailValidation] = useState(true);
-  const [passwordValidation, setPasswordValidation] = useState(true);
-
-  function checkValidation(input, condition, setStateFunction) {
-    if (!input.match(condition)) {
-      setStateFunction(false);
-    } else {
-      setStateFunction(true);
-    }
-    input.length === 0 && setStateFunction(true);
-  }
+  const [validation, setValidation] = useState(true);
 
   function emailHandler(event) {
-    checkValidation(
-      event.target.value,
-      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-      setEmailValidation
-    );
     setEmail(event.target.value);
   }
 
   function passwordHandler(event) {
-    checkValidation(
-      event.target.value,
-      /^.{6,}$/,
-      setPasswordValidation
-    );
     setPassword(event.target.value);
   }
+
+  /*function checkboxHandler(event){
+     if(event.target.checked){
+      localStorage.setItem('email', email)
+      localStorage.setItem('password', password)
+      localStorage.setItem('isChecked', true)
+     }else{
+      localStorage.removeItem('email')
+      localStorage.removeItem('password')
+      localStorage.setItem('isChecked', false)
+     }
+  }*/
 
   function login() {
     signInWithEmailAndPassword(auth, email, password)
@@ -57,7 +49,7 @@ const Login = () => {
         navigate("/main");
       })
       .catch((err) => {
-        console.log(err.message);
+        setValidation(false);
       });
   }
 
@@ -75,38 +67,30 @@ const Login = () => {
                 type="email"
                 placeholder="E-mail"
                 onChange={emailHandler}
-                className={`${styles.login_input_container} ${
-                  !emailValidation && styles.error
-                }`}
+                className={styles.login_input_container}
                 iconboxClass={styles.icon_container}
                 inputClass={styles.login_input}
                 icon={faEnvelope}
-                errorMessage = {!emailValidation && 'Invalid email'}
               />
               <Input
                 type="password"
                 placeholder="Password"
                 onChange={passwordHandler}
-                className={`${styles.login_input_container} ${
-                  !passwordValidation && styles.error
-                }`}
+                className={styles.login_input_container}
                 iconboxClass={styles.icon_container}
                 inputClass={styles.login_input}
                 icon={faKey}
-                errorMessage = {!passwordValidation && 'Invalid password'}
               />
-              <LoginButton
-                buttonHandler={login}
-                disabled={
-                  !emailValidation || !passwordValidation ? true : false
-                }
-                className= {`${buttonStyle.login_register_button} ${!emailValidation || !passwordValidation && styles.disabled_button}`}
-              >
-                Log in
-              </LoginButton>
+              {!validation && (
+                <p className={styles.login_error}>Wrong email or password !</p>
+              )}
+              <LoginButton buttonHandler={login}>Log in</LoginButton>
               <div className={styles.login_options}>
                 <div className={styles.remember_me}>
-                  <input type="checkbox"></input>
+                  <input
+                    type="checkbox"
+                    // onChange = {checkboxHandler}
+                  ></input>
                   <label>Remember me</label>
                 </div>
                 <NavLink to="/register">Don't have an account ?</NavLink>

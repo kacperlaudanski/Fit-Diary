@@ -74,6 +74,29 @@ $icon-color: rgb(148, 148, 148);
         height: 100%;
       }
     }
+
+    @media (width < 850px) {
+      .register_container {
+        width: 100%;
+        padding: 0 1em; 
+      }
+      .image_container {
+        display: none;
+      }
+    }
+  
+    @media (768px < width < 1023px){
+  
+    }
+  
+    @media (orientation: landscape){ 
+      .register_container{
+        .form_container{
+          height:65vh;
+         }
+      }
+  
+    }
   }
 
   .error{

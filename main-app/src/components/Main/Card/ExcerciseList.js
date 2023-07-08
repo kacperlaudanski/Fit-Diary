@@ -9,6 +9,8 @@ import {
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../../context/firebase-context";
 import Exercise from "./Exercise";
+import EmptyExercise from "../../Features/EmptyBox/EmptyExercise";
+import Loader from "../../Features/Loader/Loader";
 
 export default function ExcerciseList({ path, editExHandler }) {
   const excerciseQuery = useCallback(collection(db, path), [collection]);
@@ -22,6 +24,8 @@ export default function ExcerciseList({ path, editExHandler }) {
 
   return (
     <>
+      {loadedExcercises?.length === 0 && <EmptyExercise />}
+      {exLoading && <Loader />}
       {loadedExcercises?.map((ex, index) => {
         return (
           <Exercise

@@ -13,30 +13,6 @@
   background: linear-gradient(90deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
   overflow: hidden;
 }
-.home_container .home_navbar {
-  width: 40%;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: rgb(255, 255, 255);
-}
-.home_container .home_navbar .navbar_login_button {
-  width: 20%;
-  height: 40px;
-  border: 1px solid rgb(255, 255, 255);
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.159);
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s linear;
-}
-.home_container .home_navbar .navbar_login_button:hover {
-  background-color: rgba(131, 58, 180, 0.565);
-}
 .home_container .content_container {
   display: flex;
   align-items: left;
@@ -82,6 +58,10 @@
   justify-content: center;
   transition: 0.3s linear;
   margin-top: 2em;
+  cursor: pointer;
+}
+.home_container .content_container .text_container .get_started_button:hover {
+  background-color: rgba(255, 133, 208, 0.492);
 }
 .home_container .content_container .text_container .social_media_container {
   width: 40%;
@@ -93,6 +73,9 @@
   position: relative;
   left: 0;
   bottom: 0;
+}
+.home_container .content_container .text_container .social_media_container a {
+  color: rgb(255, 255, 255);
 }
 .home_container .content_container .text_container .social_media_container .social_media_icon {
   font-size: 1.5rem;
@@ -110,6 +93,29 @@
   position: absolute;
   top: 4em;
   right: 0;
+}
+@media (width < 850px) {
+  .home_container .home_container {
+    height: auto;
+  }
+  .home_container .content_container {
+    padding: 1em;
+  }
+  .home_container .content_container .text_container {
+    width: 100%;
+  }
+  .home_container .content_container .text_container .get_started_button {
+    width: 100%;
+  }
+  .home_container .content_container .text_container .social_media_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .home_container .content_container .image_container {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=home.module.css.map */

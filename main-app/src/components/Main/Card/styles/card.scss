@@ -58,7 +58,7 @@
           @include flex-setup(center, flex-start);
           font-size: 0.9rem;
           margin: 0.5em 0;
-          max-width: 13%;
+          width:fit-content;
           height: 30px;
           background-color: $first-gray;
           box-sizing: border-box;

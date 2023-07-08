@@ -30,24 +30,15 @@ const Register = () => {
     } else {
       setStateFunction(true);
     }
-    //input.length === 0 && setStateFunction(true);
   }
 
   function firstnameHandler(event) {
-    checkValidation(
-      event.target.value,
-      /^.+$/,
-      setFirstnameValidation
-    );
+    checkValidation(event.target.value, /^.+$/, setFirstnameValidation);
     setFirstname(event.target.value);
   }
 
   function lastnameHandler(event) {
-    checkValidation(
-      event.target.value,
-      /^.+$/,
-      setLastnameValidation
-    );
+    checkValidation(event.target.value, /^.+$/, setLastnameValidation);
     setLastname(event.target.value);
   }
 
@@ -61,11 +52,7 @@ const Register = () => {
   }
 
   function passwordHandler(event) {
-    checkValidation(
-      event.target.value,
-      /^.{6,}$/,
-      setPasswordValidation
-    );
+    checkValidation(event.target.value, /^.{6,}$/, setPasswordValidation);
     setPassword(event.target.value);
   }
 
@@ -90,47 +77,64 @@ const Register = () => {
               <Input
                 type="text"
                 placeholder="Firstname"
-                className={`${styles.register_input_container} ${!firstnameValidation && styles.error}`} 
+                className={`${styles.register_input_container} ${
+                  !firstnameValidation && styles.error
+                }`}
                 inputClass={styles.register_input}
                 iconboxClass={styles.icon_container}
                 icon={faUser}
                 onChange={firstnameHandler}
-                errorMessage = {!firstnameValidation && 'Invalid value'}
+                errorMessage={!firstnameValidation && "Invalid value"}
               />
               <Input
                 type="text"
                 placeholder="Lastname"
-                className={`${styles.register_input_container} ${!lastnameValidation && styles.error}`}
+                className={`${styles.register_input_container} ${
+                  !lastnameValidation && styles.error
+                }`}
                 inputClass={styles.register_input}
                 iconboxClass={styles.icon_container}
                 icon={faUser}
                 onChange={lastnameHandler}
-                errorMessage = {!lastnameValidation && 'Invalid value'}
+                errorMessage={!lastnameValidation && "Invalid value"}
               />
               <Input
                 type="password"
                 placeholder="Password"
-                className={`${styles.register_input_container} ${!passwordValidation && styles.error}`}
+                className={`${styles.register_input_container} ${
+                  !passwordValidation && styles.error
+                }`}
                 inputClass={styles.register_input}
                 iconboxClass={styles.icon_container}
                 icon={faKey}
                 onChange={passwordHandler}
-                errorMessage = {!passwordValidation && 'Min 6 char.'}
+                errorMessage={!passwordValidation && "Min 6 char."}
               />
               <Input
                 type="email"
                 placeholder="E-mail"
-                className={`${styles.register_input_container} ${!emailValidation && styles.error}`}
+                className={`${styles.register_input_container} ${
+                  !emailValidation && styles.error
+                }`}
                 inputClass={styles.register_input}
                 iconboxClass={styles.icon_container}
                 icon={faEnvelope}
                 onChange={emailHandler}
-                errorMessage = {!emailValidation && 'Invalid email'}
+                errorMessage={!emailValidation && "Invalid email"}
               />
               <RegisterButton
                 buttonHandler={registerHandler}
                 disabled={
-                 !firstnameValidation || !lastnameValidation || !emailValidation || !passwordValidation ? true : false
+                  !firstnameValidation ||
+                  !lastnameValidation ||
+                  !emailValidation ||
+                  !passwordValidation ||
+                  firstname.length === 0 ||
+                  lastname.length === 0 ||
+                  password.length === 0 || 
+                  email.length === 0
+                    ? true
+                    : false
                 }
               >
                 Create an account

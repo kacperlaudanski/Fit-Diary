@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import styles from "./styles/home.module.css";
+import navstyles from '../Features/Navbar/styles/navbar.module.css'
 
 const Home = () => {
 
@@ -20,11 +21,11 @@ library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
   return (
     <React.Fragment>
       <div className={styles.home_container}>
-        <Navbar elementsClass = {styles.home_navbar}>
+        <Navbar elementsClass = {navstyles.home_navbar}>
           <li>About Us</li>
           <li>Support</li>
           <li>Contact</li>
-          <NavLink className={styles.navbar_login_button} to="/login">
+          <NavLink className={navstyles.navbar_login_button} to="/login">
             Login
           </NavLink>
         </Navbar>

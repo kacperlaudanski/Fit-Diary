@@ -22,6 +22,9 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../context/firebase-context";
 import ExcerciseList from "./Card/ExcerciseList";
 import ButtonSearch from "./Button-Search-Bar";
+import EmptyTraining from "../Features/EmptyBox/EmptyTraining";
+import Loader from "../Features/Loader/Loader";
+import Pagination from "../Features/Pagination/Pagination";
 
 const ExcerciseReducer = (state, action) => {
   switch (action.type) {
@@ -89,8 +92,6 @@ const Main = () => {
   const filteredTrainings = loadedTrainings?.filter((training) => {
     return training.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
-
-  console.log(filteredTrainings);
 
   const handleDateChange = (event) => {
     updateDate(event.target.value);
@@ -191,6 +192,20 @@ const Main = () => {
     setExcerciseForm(false);
   }*/
 
+  //PAGINATION LOGIC
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const trainingsPerPage = 5; 
+  //const [trainingsPerPage, setTraningsPerPage] = useState(5);
+
+  const lastTrainingIndex = trainingsPerPage * currentPage;
+  const firstTrainingIndex = lastTrainingIndex - trainingsPerPage;
+
+  const selectedTrainings = filteredTrainings?.slice(
+    firstTrainingIndex,
+    lastTrainingIndex
+  );
+
   return (
     <main className={styles.main_container}>
       <Navbar elementsClass={styles.main_navbar}>
@@ -199,7 +214,11 @@ const Main = () => {
           alt="user-avatar"
           className={styles.navbar_user_avatar}
         ></img>
-        <button className={styles.logout_button} type="button" onClick={logoutHandler}>
+        <button
+          className={styles.logout_button}
+          type="button"
+          onClick={logoutHandler}
+        >
           Log out
         </button>
       </Navbar>
@@ -227,7 +246,9 @@ const Main = () => {
         onChange={(e) => setQuery(e.target.value)}
       />
       <TrainingList>
-        {filteredTrainings?.map((training, index) => {
+        {filteredTrainings?.length === 0 && <EmptyTraining />}
+        {trainingLoading && <Loader />}
+        {selectedTrainings?.map((training, index) => {
           return (
             <TrainingCard
               key={training.trainingId}
@@ -253,6 +274,12 @@ const Main = () => {
           );
         })}
       </TrainingList>
+      <Pagination 
+         totalLength = {filteredTrainings?.length}
+         trainingsPerPage = {trainingsPerPage}
+         setCurrentPage = {setCurrentPage}
+         currentPage = {currentPage}
+      /> 
       <Footer />
     </main>
   );
