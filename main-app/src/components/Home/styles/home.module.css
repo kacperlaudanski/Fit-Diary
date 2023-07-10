@@ -75,6 +75,7 @@
 }
 .home_container .content_container .text_container .social_media_container a {
   color: rgb(255, 255, 255);
+  pointer-events: none;
 }
 .home_container .content_container .text_container .social_media_container .social_media_icon {
   font-size: 1.5rem;

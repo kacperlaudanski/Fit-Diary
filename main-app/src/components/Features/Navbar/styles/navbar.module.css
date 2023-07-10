@@ -27,6 +27,13 @@
   color: #fff;
   transition: 0.3s linear;
 }
+.navbar .home_navbar li {
+  transition: 0.3s linear;
+}
+.navbar .home_navbar li:hover {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.587);
+}
 .navbar .home_navbar .navbar_login_button {
   width: 20%;
   height: 40px;

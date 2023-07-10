@@ -1,23 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useReducer, useState } from "react";
 import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import RegisterButton from "../Features/Buttons/Login&RegisterButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./styles/register.module.css";
-import FirebaseConfig from "../../context/firebase-context";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { faUser, faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import BodybuilderImg from "../../images/bodybuilder.png";
 
-const Register = () => {
-  const firebaseConfig = useContext(FirebaseConfig);
-  const navigate = useNavigate();
-  const auth = getAuth();
+const registerReducer = (state, action) => {
+  switch (action.type) {
+    case "FIRSTNAME":
+      return { ...state, firstname: action.payload };
+    case "LASTNAME":
+      return { ...state, lastname: action.payload };
+    case "PASSWORD":
+      return { ...state, password: action.payload };
+    case "EMAIL":
+      return { ...state, email: action.payload };
+    default:
+      return state;
+  }
+};
+const DEFAULT_VALUES = {
+  firstname: null,
+  lastname: null,
+  password: null,
+  email: null,
+};
 
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Register = () => {
+  const navigate = useNavigate();
+
+  const [state, dispatch] = useReducer(registerReducer, DEFAULT_VALUES);
 
   const [firstnameValidation, setFirstnameValidation] = useState(true);
   const [lastnameValidation, setLastnameValidation] = useState(true);
@@ -34,12 +50,12 @@ const Register = () => {
 
   function firstnameHandler(event) {
     checkValidation(event.target.value, /^.+$/, setFirstnameValidation);
-    setFirstname(event.target.value);
+    dispatch({ type: "FIRSTNAME", payload: event.target.value });
   }
 
   function lastnameHandler(event) {
     checkValidation(event.target.value, /^.+$/, setLastnameValidation);
-    setLastname(event.target.value);
+    dispatch({ type: "LASTNAME", payload: event.target.value });
   }
 
   function emailHandler(event) {
@@ -48,27 +64,26 @@ const Register = () => {
       /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
       setEmailValidation
     );
-    setEmail(event.target.value);
+    dispatch({ type: "EMAIL", payload: event.target.value });
   }
 
   function passwordHandler(event) {
     checkValidation(event.target.value, /^.{6,}$/, setPasswordValidation);
-    setPassword(event.target.value);
+    dispatch({ type: "PASSWORD", payload: event.target.value });
   }
 
   function registerHandler() {
-    createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, state.email, state.password)
       .then(() => {
         navigate("/get-started");
       })
       .catch((err) => {
-        navigate('/error')
+        navigate("/error");
       });
   }
 
   return (
     <React.Fragment>
-      <FirebaseConfig.Provider value={firebaseConfig}>
         <div className={styles.container}>
           <div className={styles.register_container}>
             <h1>Create an account 🚀</h1>
@@ -128,10 +143,10 @@ const Register = () => {
                   !lastnameValidation ||
                   !emailValidation ||
                   !passwordValidation ||
-                  firstname.length === 0 ||
-                  lastname.length === 0 ||
-                  password.length === 0 || 
-                  email.length === 0
+                  state.firstname === null ||
+                  state.lastname === null ||
+                  state.password === null ||
+                  state.email === null
                     ? true
                     : false
                 }
@@ -147,7 +162,6 @@ const Register = () => {
             <img src={BodybuilderImg} alt="bodybuilder"></img>
           </div>
         </div>
-      </FirebaseConfig.Provider>
     </React.Fragment>
   );
 };

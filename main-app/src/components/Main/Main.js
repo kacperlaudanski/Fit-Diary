@@ -3,7 +3,6 @@ import React, {
   useContext,
   useReducer,
   useCallback,
-  useEffect,
 } from "react";
 import styles from "./styles/main.module.css";
 import navStyles from "../Features/Navbar/styles/navbar.module.css";
@@ -26,7 +25,7 @@ import {
   updateDoc,
 } from "@firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { db } from "../../context/firebase-context";
+import { db } from "../../firebase";
 import ExcerciseList from "./Card/ExcerciseList";
 import ButtonSearch from "./Button-Search-Bar";
 import EmptyTraining from "../Features/EmptyBox/EmptyTraining";
@@ -192,10 +191,6 @@ const Main = () => {
       });
   }
 
-  useEffect(() => {
-    setEditState(false);
-  }, []);
-
   //EDITING TRAINING
 
   async function editTraining() {
@@ -205,7 +200,10 @@ const Main = () => {
         `users/${currentUser.uid}/Trainings`,
         currentTraining
       );
-      const update = await updateDoc(docRef, {...training, trainingId:currentTraining});
+      const update = await updateDoc(docRef, {
+        ...training,
+        trainingId: currentTraining,
+      });
       setTrainingForm(false);
     } catch (err) {
       console.log(err);
@@ -221,7 +219,10 @@ const Main = () => {
         `users/${currentUser.uid}/Trainings/${currentTraining}/Excercises`,
         currentEx
       );
-      const update = await updateDoc(docRef, {...excercise, excerciseId:currentEx});
+      const update = await updateDoc(docRef, {
+        ...excercise,
+        excerciseId: currentEx,
+      });
       setExcerciseForm(false);
     } catch (err) {
       console.log(err);
@@ -325,7 +326,7 @@ const Main = () => {
           );
         })}
       </TrainingList>
-      {selectedTrainings.length > 0 && (
+      {selectedTrainings?.length > 0 && (
         <Pagination
           totalLength={filteredTrainings?.length}
           trainingsPerPage={trainingsPerPage}
@@ -333,7 +334,6 @@ const Main = () => {
           currentPage={currentPage}
         />
       )}
-
       <Footer />
     </main>
   );

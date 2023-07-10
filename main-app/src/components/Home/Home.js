@@ -3,7 +3,6 @@ import Navbar from "../Features/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import Image from "../../images/man.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faTwitter,
   faInstagram,
@@ -15,8 +14,6 @@ import styles from "./styles/home.module.css";
 import navstyles from '../Features/Navbar/styles/navbar.module.css'
 
 const Home = () => {
-
-library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
 
   return (
     <React.Fragment>
@@ -44,25 +41,25 @@ library.add(faTwitter, faInstagram, faLinkedin, faYoutube);
               Get started
             </NavLink>
             <footer className={styles.social_media_container}>
-              <a>
+              <a href='#'>
                 <FontAwesomeIcon
                   icon={faTwitter}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a>
+              <a href='#'>
                 <FontAwesomeIcon
                   icon={faInstagram}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a>
+              <a href='#'>
                 <FontAwesomeIcon
                   icon={faYoutube}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a>
+              <a href='#'>
                 <FontAwesomeIcon
                   icon={faLinkedin}
                   className={styles.social_media_icon}

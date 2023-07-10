@@ -2,12 +2,10 @@ import React, { useCallback } from "react";
 import {
   collection,
   doc,
-  addDoc,
-  setDoc,
   deleteDoc,
 } from "@firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-import { db } from "../../../context/firebase-context";
+import { db } from "../../../firebase";
 import Exercise from "./Exercise";
 import EmptyExercise from "../../Features/EmptyBox/EmptyExercise";
 import Loader from "../../Features/Loader/Loader";

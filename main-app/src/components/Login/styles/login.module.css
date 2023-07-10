@@ -64,9 +64,6 @@
   align-items: flex-start;
   justify-content: space-between;
 }
-.container .login_container .form_container .login_options .remember_me input {
-  margin-right: 10px;
-}
 .container .image_container {
   width: 50%;
   height: 100vh;

@@ -1,48 +1,49 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "../Features/Form/FormWrapper";
 import Input from "../Features/Input/Input";
 import LoginButton from "../Features/Buttons/Login&RegisterButton";
 import styles from "./styles/login.module.css";
-import FirebaseConfig from "../../context/firebase-context";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth-context";
 import WorkoutImg from "../../images/workout.png";
 
+const loginReducer = (state, action) => {
+  switch (action.type) {
+    case "EMAIL":
+      return { ...state, email: action.payload };
+    case "PASSWORD":
+      return { ...state, password: action.payload };
+    default:
+      return state;
+  }
+};
+
+const DEFAULT_VALUES = {
+  email: null,
+  password: null,
+};
+
 const Login = () => {
-  const firebaseConfigPack = useContext(FirebaseConfig);
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
-  const auth = getAuth();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [state, loginDispatch] = useReducer(loginReducer, DEFAULT_VALUES);
 
   const [validation, setValidation] = useState(true);
 
   function emailHandler(event) {
-    setEmail(event.target.value);
+    loginDispatch({ type: "EMAIL", payload: event.target.value });
   }
 
   function passwordHandler(event) {
-    setPassword(event.target.value);
+    loginDispatch({ type: "PASSWORD", payload: event.target.value });
   }
 
-  /*function checkboxHandler(event){
-     if(event.target.checked){
-      localStorage.setItem('email', email)
-      localStorage.setItem('password', password)
-      localStorage.setItem('isChecked', true)
-     }else{
-      localStorage.removeItem('email')
-      localStorage.removeItem('password')
-      localStorage.setItem('isChecked', false)
-     }
-  }*/
-
   function login() {
-    signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, state.email, state.password)
       .then((cred) => {
         dispatch({ type: "LOGIN", payload: cred.user });
         navigate("/main");
@@ -54,7 +55,6 @@ const Login = () => {
 
   return (
     <React.Fragment>
-      <FirebaseConfig.Provider value={firebaseConfigPack}>
         <div className={styles.container}>
           <div className={styles.login_container}>
             <h1>Hey, hello 👋</h1>
@@ -85,13 +85,6 @@ const Login = () => {
               )}
               <LoginButton buttonHandler={login}>Log in</LoginButton>
               <div className={styles.login_options}>
-                <div className={styles.remember_me}>
-                  <input
-                    type="checkbox"
-                    // onChange = {checkboxHandler}
-                  ></input>
-                  <label>Remember me</label>
-                </div>
                 <NavLink to="/register">Don't have an account ?</NavLink>
               </div>
             </Form>
@@ -100,7 +93,6 @@ const Login = () => {
             <img src={WorkoutImg} alt="outside-workout"></img>
           </div>
         </div>
-      </FirebaseConfig.Provider>
     </React.Fragment>
   );
 };

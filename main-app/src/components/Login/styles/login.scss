@@ -5,8 +5,6 @@
 }
 $white: rgb(255, 255, 255);
 
-
-
 * {
   margin: 0;
   padding: 0;
@@ -71,10 +69,6 @@ $white: rgb(255, 255, 255);
       .login_options {
         width: 100%;
         @include flex-setup(flex-start, space-between);
-
-        .remember_me input {
-          margin-right: 10px;
-        }
       }
     }
   }
@@ -92,10 +86,10 @@ $white: rgb(255, 255, 255);
   @media (width < 850px) {
     .login_container {
       width: 100%;
-      padding: 0 1em; 
+      padding: 0 1em;
 
-      .login_options{
-        font-size: .8rem;
+      .login_options {
+        font-size: 0.8rem;
       }
     }
     .image_container {
@@ -103,22 +97,18 @@ $white: rgb(255, 255, 255);
     }
   }
 
-  @media (768px < width < 1023px){
-
+  @media (768px < width < 1023px) {
   }
 
-  @media (orientation: landscape){ 
-    .login_container{
-      .form_container{
-        height:45vh;
-       }
+  @media (orientation: landscape) {
+    .login_container {
+      .form_container {
+        height: 45vh;
+      }
     }
-
   }
 }
 
 .error {
   border: 2px solid rgb(255, 0, 0);
 }
-
-

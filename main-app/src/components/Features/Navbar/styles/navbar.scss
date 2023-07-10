@@ -29,6 +29,15 @@
     color: #fff;
     transition: 0.3s linear;
 
+    li{
+      transition: .3s linear; 
+    }
+
+    li:hover{
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.587); 
+     }
+
     .navbar_login_button {
       width: 20%;
       height: 40px;
