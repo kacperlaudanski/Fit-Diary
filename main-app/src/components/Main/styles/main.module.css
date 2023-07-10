@@ -15,34 +15,6 @@
   justify-content: space-between;
   flex-direction: column;
 }
-.main_container .main_navbar {
-  width: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.main_container .main_navbar .navbar_user_avatar {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-}
-.main_container .main_navbar .logout_button {
-  width: 60%;
-  height: 40px;
-  border: 1px solid #fff;
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.159);
-  color: #fff;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s linear;
-  cursor: pointer;
-}
-.main_container .main_navbar .logout_button:hover {
-  background-color: rgba(131, 58, 180, 0.565);
-}
 .main_container .button_search_container {
   width: 80%;
   height: auto;
@@ -86,6 +58,22 @@
   height: 40px;
   border: none;
   outline: none;
+}
+
+@media (max-width: 850px) {
+  .main_container .button_search_container {
+    width: 90%;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .main_container .button_search_container .add_training_button {
+    width: 90%;
+    margin: 1em 0;
+  }
+  .main_container .button_search_container .search_input_group {
+    width: 90%;
+    margin: 1em 0;
+  }
 }
 
 /*# sourceMappingURL=main.module.css.map */

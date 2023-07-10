@@ -59,11 +59,10 @@ const Register = () => {
   function registerHandler() {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log(`User created ! ${email}`);
         navigate("/get-started");
       })
       .catch((err) => {
-        console.log(err);
+        navigate('/error')
       });
   }
 

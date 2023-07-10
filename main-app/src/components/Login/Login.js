@@ -9,7 +9,6 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth-context";
 import WorkoutImg from "../../images/workout.png";
-import Navbar from "../Features/Navbar/Navbar";
 
 const Login = () => {
   const firebaseConfigPack = useContext(FirebaseConfig);

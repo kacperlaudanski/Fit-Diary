@@ -23,4 +23,10 @@
   background-color: rgb(247, 164, 116);
 }
 
+@media (max-width: 850px) {
+  .container {
+    width: 90%;
+  }
+}
+
 /*# sourceMappingURL=pagination.module.css.map */

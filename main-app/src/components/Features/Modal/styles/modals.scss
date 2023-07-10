@@ -3,16 +3,16 @@ $icon-color: #b7b7b7;
 $font-color: rgb(255, 255, 255);
 $input-bg: rgb(255, 255, 255);
 
-$container-br: 15px; 
-$button-input-br: 10px; 
+$container-br: 15px;
+$button-input-br: 10px;
 
-@mixin flex-setup($align-items, $justify-content){
-  display:flex; 
-  align-items: $align-items; 
+@mixin flex-setup($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
   justify-content: $justify-content;
 }
 
-@mixin modals-center-setup($z-index){
+@mixin modals-center-setup($z-index) {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -36,7 +36,7 @@ $button-input-br: 10px;
   background-color: $bg-color;
   color: $font-color;
   border-radius: $container-br;
-  @include modals-center-setup(9999); 
+  @include modals-center-setup(9999);
 
   h1 {
     color: $font-color;
@@ -60,7 +60,7 @@ $button-input-br: 10px;
       .ex_icon {
         width: 9%;
         height: 40px;
-        @include flex-setup(center, center); 
+        @include flex-setup(center, center);
         color: $icon-color;
       }
 
@@ -82,7 +82,7 @@ $button-input-br: 10px;
   color: $font-color;
   background-color: $bg-color;
   border-radius: $container-br;
-  @include modals-center-setup(9999); 
+  @include modals-center-setup(9999);
 
   .add_training_form {
     width: 100%;
@@ -100,7 +100,7 @@ $button-input-br: 10px;
 
       .icon_box {
         width: 7%;
-        @include flex-setup(center, center); 
+        @include flex-setup(center, center);
         color: $icon-color;
       }
 
@@ -117,7 +117,7 @@ $button-input-br: 10px;
 .buttons_container {
   margin-top: 1em;
   width: 100%;
-  @include flex-setup(center, space-between); 
+  @include flex-setup(center, space-between);
 
   button {
     width: 45%;
@@ -137,5 +137,39 @@ $button-input-br: 10px;
 
   button:hover {
     background-color: rgba(183, 2, 255, 0.665);
+  }
+}
+
+@media (max-width: 850px) {
+  .add_ex_container {
+    width: 90%;
+
+    .add_ex_form {
+      width: 100%;
+
+      .ex_icon {
+        width: 13%;
+      }
+
+      .ex_input {
+        width: 87%;
+      }
+    }
+  }
+  .add_training_container {
+    width: 90%;
+
+    .add_training_form {
+      .training_input_group {
+        width: 100%;
+
+        .icon_box {
+          width: 10%;
+        }
+        .training_input {
+          width: 90%;
+        }
+      }
+    }
   }
 }

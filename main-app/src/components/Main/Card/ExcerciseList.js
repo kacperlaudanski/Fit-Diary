@@ -11,20 +11,27 @@ import { db } from "../../../context/firebase-context";
 import Exercise from "./Exercise";
 import EmptyExercise from "../../Features/EmptyBox/EmptyExercise";
 import Loader from "../../Features/Loader/Loader";
+import LoadingError from "../../Features/Error/LoadingError";
+import { useNavigate } from "react-router-dom";
 
 export default function ExcerciseList({ path, editExHandler }) {
+  const navigate = useNavigate();
   const excerciseQuery = useCallback(collection(db, path), [collection]);
   const [loadedExcercises, exLoading, exError] =
     useCollectionData(excerciseQuery);
 
   async function deleteExHandler(event) {
-    console.log(event.target.id);
-    await deleteDoc(doc(db, path, event.target.id));
+    try {
+      await deleteDoc(doc(db, path, event.target.id));
+    } catch {
+      navigate("/error");
+    }
   }
 
   return (
     <>
       {loadedExcercises?.length === 0 && <EmptyExercise />}
+      {exError && <LoadingError error={exError} />}
       {exLoading && <Loader />}
       {loadedExcercises?.map((ex, index) => {
         return (

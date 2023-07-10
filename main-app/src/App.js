@@ -5,6 +5,7 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import GetStarted from "./components/Get-Started/GetStarted";
 import Main from "./components/Main/Main";
+import ErrorPage from "./components/Features/Error/ErrorPage";
 import { AuthContext } from "./context/auth-context";
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path='/error' element={<ErrorPage />} /> 
           <Route
             path="/main"
             element={

@@ -120,4 +120,31 @@
   background-color: rgba(183, 2, 255, 0.665);
 }
 
+@media (max-width: 850px) {
+  .add_ex_container {
+    width: 90%;
+  }
+  .add_ex_container .add_ex_form {
+    width: 100%;
+  }
+  .add_ex_container .add_ex_form .ex_icon {
+    width: 13%;
+  }
+  .add_ex_container .add_ex_form .ex_input {
+    width: 87%;
+  }
+  .add_training_container {
+    width: 90%;
+  }
+  .add_training_container .add_training_form .training_input_group {
+    width: 100%;
+  }
+  .add_training_container .add_training_form .training_input_group .icon_box {
+    width: 10%;
+  }
+  .add_training_container .add_training_form .training_input_group .training_input {
+    width: 90%;
+  }
+}
+
 /*# sourceMappingURL=modals.module.css.map */

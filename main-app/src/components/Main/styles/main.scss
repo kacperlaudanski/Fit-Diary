@@ -24,34 +24,6 @@
   @include flex-setup(center, space-between);
   flex-direction: column;
 
-  .main_navbar {
-    width: 15%;
-    @include flex-setup(center, space-between);
-
-    .navbar_user_avatar {
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-    }
-
-    .logout_button {
-      width: 60%;
-      height: 40px;
-      border: 1px solid #fff;
-      border-radius: 25px;
-      background-color: rgba(255, 255, 255, 0.159);
-      color: #fff;
-      text-decoration: none;
-      @include flex-setup(center, center);
-      transition: 0.3s linear;
-      cursor: pointer;
-    }
-
-    .logout_button:hover {
-      background-color: rgba(131, 58, 180, 0.565);
-    }
-  }
-
   .button_search_container {
     width: 80%;
     height: auto;
@@ -97,4 +69,25 @@
       }
     }
   }
+}
+
+@media(max-width:850px){
+  .main_container{
+    .button_search_container{
+      width:90%; 
+      flex-direction: column;
+      justify-content: space-around;
+
+      .add_training_button{
+         width:90%; 
+         margin: 1em 0;
+      }
+      .search_input_group {
+        width:90%; 
+        margin:1em 0;
+      }
+
+    }
+  }
+
 }

@@ -39,8 +39,37 @@
   align-items: center;
   justify-content: center;
   transition: 0.3s linear;
+  cursor: pointer;
 }
-.navbar .home_navbar .navbar_login_button:focus {
+.navbar .home_navbar .navbar_login_button:hover {
+  background-color: rgba(131, 58, 180, 0.565);
+}
+.navbar .main_navbar {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar .main_navbar .navbar_user_avatar {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.navbar .main_navbar .logout_button {
+  width: 60%;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.159);
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+.navbar .main_navbar .logout_button:hover {
   background-color: rgba(131, 58, 180, 0.565);
 }
 .navbar .hamburger_menu::before,
@@ -63,7 +92,7 @@
   cursor: pointer;
   position: absolute;
   right: 1em;
-  z-index: 999;
+  z-index: 998;
 }
 .navbar .hamburger_menu input {
   appearance: none;
@@ -73,11 +102,13 @@
 .navbar .hamburger_menu:has(input:checked)::before {
   rotate: 45deg;
   width: 50px;
+  position: fixed;
   translate: 0 calc(var(--bar-height) / -2);
 }
 .navbar .hamburger_menu:has(input:checked)::after {
   rotate: -45deg;
   width: 50px;
+  position: fixed;
   translate: 0 calc(var(--bar-height) / 2);
 }
 .navbar .hamburger_menu input:checked {
@@ -102,10 +133,39 @@
     width: 40%;
     height: 50px;
   }
+  .navbar .main_navbar {
+    display: none;
+  }
+  .navbar .main_navbar .navbar_user_avatar {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    margin: 2em;
+    cursor: pointer;
+  }
+  .navbar .main_navbar .logout_button {
+    width: 40%;
+    height: 50px;
+  }
   .navbar .hamburger_menu:has(input:checked) + .home_navbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(84, 84, 84, 0.74);
+    z-index: 2;
+    font-size: 1.5rem;
+  }
+  .navbar .hamburger_menu:has(input:checked) + .main_navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     position: fixed;
     top: 50%;
