@@ -13,7 +13,9 @@ const GetStarted = () => {
   return (
     <div className={styles.get_started_container}>
       <div className={styles.content_box}>
-        <h1>Welcome ! Log in and start your dream fit life !</h1>
+        <h1>
+          <span>Welcome !</span><br/> Log in and start your dream fit life today! 
+        </h1>
         <LoginButton buttonHandler={login}>Log in</LoginButton>
       </div>
     </div>

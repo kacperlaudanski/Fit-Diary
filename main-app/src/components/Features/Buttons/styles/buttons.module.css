@@ -6,11 +6,16 @@
   cursor: pointer;
   background-color: rgb(255, 133, 208);
   color: #fff;
+  transition: 0.3s linear;
 }
 
 .login_register_button:disabled {
   background-color: rgb(178, 178, 178);
   cursor: default;
+}
+
+.login_register_button:hover {
+  background-color: rgba(255, 133, 208, 0.588);
 }
 
 /*# sourceMappingURL=buttons.module.css.map */
