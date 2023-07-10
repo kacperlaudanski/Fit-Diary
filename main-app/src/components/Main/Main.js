@@ -1,4 +1,10 @@
-import React, { useState, useContext, useReducer, useCallback } from "react";
+import React, {
+  useState,
+  useContext,
+  useReducer,
+  useCallback,
+  useEffect,
+} from "react";
 import styles from "./styles/main.module.css";
 import navStyles from "../Features/Navbar/styles/navbar.module.css";
 import Navbar from "../Features/Navbar/Navbar";
@@ -99,6 +105,7 @@ const Main = () => {
   };
 
   const trainingAddFormHandler = () => {
+    setEditState(false);
     setTrainingForm(true);
   };
 
@@ -185,23 +192,41 @@ const Main = () => {
       });
   }
 
-  //EDITING
+  useEffect(() => {
+    setEditState(false);
+  }, []);
 
-  async function editTrainingHandler(event) {
-    console.log(event.target.id);
-    setCurrentTraining(event.target.id);
+  //EDITING TRAINING
+
+  async function editTraining() {
+    try {
+      const docRef = await doc(
+        db,
+        `users/${currentUser.uid}/Trainings`,
+        currentTraining
+      );
+      const update = await updateDoc(docRef, {...training, trainingId:currentTraining});
+      setTrainingForm(false);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  /*async function editEx() {
-    await updateDoc(
-      doc(
+  //EDITING EXERCISE
+
+  async function editEx() {
+    try {
+      const docRef = await doc(
         db,
-        `users/${currentUser.uid}/Trainings/${currentTraining}/Excercises/${currentEx}`,
-        { excercise }
-      )
-    );
-    setExcerciseForm(false);
-  }*/
+        `users/${currentUser.uid}/Trainings/${currentTraining}/Excercises`,
+        currentEx
+      );
+      const update = await updateDoc(docRef, {...excercise, excerciseId:currentEx});
+      setExcerciseForm(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   //DELETING
 
@@ -210,7 +235,7 @@ const Main = () => {
       await deleteDoc(
         doc(db, `users/${currentUser.uid}/Trainings`, event.target.id)
       );
-    } catch {
+    } catch (err) {
       navigate("/error");
     }
   }
@@ -247,13 +272,13 @@ const Main = () => {
         <TrainingForm
           handleDateChange={handleDateChange}
           handleNameChange={handleNameChange}
-          addTrainingHandler={addTrainingHandler}
+          addTrainingHandler={isUserEditing ? editTraining : addTrainingHandler}
           cancelHandler={cancelTrainingHandler}
         />
       )}
       {isExcerciseFormSelected && (
         <ExcerciseForm
-          onClick={/*isUserEditing ? editEx :*/ modalExcerciseFormHandler}
+          onClick={isUserEditing ? editEx : modalExcerciseFormHandler}
           onExcerciseChange={excerciseHandler}
           onSeriesChange={seriesHandler}
           onRepsChange={repsHandler}
@@ -279,7 +304,11 @@ const Main = () => {
               onClick={excerciseAddFormHandler}
               editBtnId={training.trainingId}
               deleteBtnId={training.trainingId}
-              editHandler={editTrainingHandler}
+              editHandler={(event) => {
+                setCurrentTraining(event.target.id);
+                setEditState(true);
+                setTrainingForm(true);
+              }}
               deleteHandler={deleteTrainingHandler}
               exBtnId={training.trainingId}
             >
@@ -296,12 +325,15 @@ const Main = () => {
           );
         })}
       </TrainingList>
-      <Pagination
-        totalLength={filteredTrainings?.length}
-        trainingsPerPage={trainingsPerPage}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      />
+      {selectedTrainings.length > 0 && (
+        <Pagination
+          totalLength={filteredTrainings?.length}
+          trainingsPerPage={trainingsPerPage}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      )}
+
       <Footer />
     </main>
   );

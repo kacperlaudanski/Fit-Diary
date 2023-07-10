@@ -45,13 +45,27 @@ $border-font-color: rgb(255, 255, 255);
         margin-bottom: 1em;
 
         button {
-          width: 25px;
+          width: 20px;
+          height:20px;
           font-size: 1.5rem;
           color: $first-gray;
-          background: none;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-color: rgba(255, 255, 255, 0);
           border: none;
+          cursor: pointer;
+        }
+        .edit_btn_white{
+          background-image: url("../../../../images/editBtn-white.png");
+        }
+  
+        .delete_btn_white{
+          background-image: url("../../../../images/close-white.png");
         }
       }
+
+
 
       .training_card_date {
         @include flex-setup(center, flex-start);
@@ -122,6 +136,7 @@ $border-font-color: rgb(255, 255, 255);
             width: 17px;
             height: 17px;
             border: none;
+            cursor: pointer;
           }
 
           .edit_btn {

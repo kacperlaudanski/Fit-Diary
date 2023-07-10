@@ -35,11 +35,22 @@
   margin-bottom: 1em;
 }
 .training_list .training_card_container .training_card .action_buttons button {
-  width: 25px;
+  width: 20px;
+  height: 20px;
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.292);
-  background: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: rgba(255, 255, 255, 0);
   border: none;
+  cursor: pointer;
+}
+.training_list .training_card_container .training_card .action_buttons .edit_btn_white {
+  background-image: url("../../../../images/editBtn-white.png");
+}
+.training_list .training_card_container .training_card .action_buttons .delete_btn_white {
+  background-image: url("../../../../images/close-white.png");
 }
 .training_list .training_card_container .training_card .training_card_date {
   display: flex;
@@ -110,6 +121,7 @@
   width: 17px;
   height: 17px;
   border: none;
+  cursor: pointer;
 }
 .training_list .training_card_container .training_card .ex_container .action_ex_col .edit_btn {
   background-image: url("../../../../images/editBtn.png");

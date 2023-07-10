@@ -1,11 +1,9 @@
 import React from "react";
-import styles from './styles/card.module.css'
+import styles from "./styles/card.module.css";
 import AddEx from "./AddExerciseButton";
 import ExerciseTable from "./ExerciseTable";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarDays,
-} from "@fortawesome/free-regular-svg-icons";
+import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 
 const TrainingCard = (props) => {
   return (
@@ -14,18 +12,14 @@ const TrainingCard = (props) => {
         <div className={styles.action_buttons}>
           <button
             onClick={props.editHandler}
-            className={styles.training_card_action_btn}
+            className={styles.edit_btn_white}
             id={props.editBtnId}
-          >
-            E
-          </button>
+          ></button>
           <button
             onClick={props.deleteHandler}
-            className={styles.training_card_action_btn}
+            className={styles.delete_btn_white}
             id={props.deleteBtnId}
-          >
-            X
-          </button>
+          ></button>
         </div>
         <div className={styles.training_card_date}>
           <FontAwesomeIcon icon={faCalendarDays} />

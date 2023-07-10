@@ -4,7 +4,7 @@ import styles from "./styles/navbar.module.css";
 const Navbar = (props) => {
   return (
     <nav className={styles.navbar}>
-      <h2>FitDiary</h2>
+      <h2>FitDiary®</h2>
       <label className={styles.hamburger_menu}>
         <input type="checkbox"></input>
       </label>
