@@ -123,6 +123,7 @@
 @media (max-width: 850px) {
   .add_ex_container {
     width: 90%;
+    padding: 1.5em 0.9em 1.5em;
   }
   .add_ex_container .add_ex_form {
     width: 100%;
@@ -135,6 +136,7 @@
   }
   .add_training_container {
     width: 90%;
+    padding: 1.5em 0.9em 1.5em;
   }
   .add_training_container .add_training_form .training_input_group {
     width: 100%;

@@ -62,7 +62,7 @@
 
 @media (max-width: 850px) {
   .main_container .button_search_container {
-    width: 90%;
+    width: 99%;
     flex-direction: column;
     justify-content: space-around;
   }

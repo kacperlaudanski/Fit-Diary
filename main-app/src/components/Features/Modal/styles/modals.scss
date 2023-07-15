@@ -143,6 +143,7 @@ $button-input-br: 10px;
 @media (max-width: 850px) {
   .add_ex_container {
     width: 90%;
+    padding: 1.5em .9em 1.5em;
 
     .add_ex_form {
       width: 100%;
@@ -158,6 +159,7 @@ $button-input-br: 10px;
   }
   .add_training_container {
     width: 90%;
+    padding: 1.5em .9em 1.5em;
 
     .add_training_form {
       .training_input_group {

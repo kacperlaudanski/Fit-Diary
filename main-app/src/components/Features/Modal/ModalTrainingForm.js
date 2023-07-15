@@ -9,7 +9,7 @@ import { faCalendar, faFile } from "@fortawesome/free-regular-svg-icons";
 const ModalTrainingForm = (props) => {
   return (
     <div className={styles.add_training_container}>
-      <h2>+ Add new training</h2>
+      <h2>{props.title}</h2>
       <Form className={styles.add_training_form}>
         <Input
           type="date"
@@ -34,7 +34,7 @@ const ModalTrainingForm = (props) => {
             type="button"
             onClick={props.addTrainingHandler}
           >
-            Create new training
+            {props.action_btn}
           </button>
           <button
             className={styles.cancel_button}
@@ -62,6 +62,8 @@ const FormTrainingBackdrop = (props) => {
           handleNameChange={props.handleNameChange}
           addTrainingHandler={props.addTrainingHandler}
           cancelHandler={props.cancelHandler}
+          title = {props.title}
+          action_btn = {props.action_btn}
         />,
         document.getElementById("training-modal-form-root")
       )}

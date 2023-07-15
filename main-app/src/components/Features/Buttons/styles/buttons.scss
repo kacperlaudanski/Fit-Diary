@@ -9,7 +9,8 @@
     transition: .3s linear; 
   }
 
-  .login_register_button:disabled{
+  .login_register_button:disabled, 
+  .login_register_button:disabled:hover{
     background-color: rgb(178, 178, 178);
     cursor: default;
   }

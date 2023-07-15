@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./styles/card.module.css";
 import AddEx from "./AddExerciseButton";
 import ExerciseTable from "./ExerciseTable";
+import { db } from "../../../firebase";
+import { doc, deleteDoc } from "@firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 
 const TrainingCard = (props) => {
+  const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  async function deleteTrainingHandler(event) {
+    try {
+      await deleteDoc(
+        doc(db, `users/${currentUser.uid}/Trainings`, event.target.id)
+      );
+    } catch (err) {
+      navigate("/error");
+    }
+  }
   return (
     <div className={styles.training_card_container}>
       <div className={styles.training_card}>
@@ -16,7 +31,7 @@ const TrainingCard = (props) => {
             id={props.editBtnId}
           ></button>
           <button
-            onClick={props.deleteHandler}
+            onClick={deleteTrainingHandler}
             className={styles.delete_btn_white}
             id={props.deleteBtnId}
           ></button>

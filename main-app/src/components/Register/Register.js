@@ -41,7 +41,7 @@ const Register = () => {
   const [passwordValidation, setPasswordValidation] = useState(true);
 
   function checkValidation(input, condition, setStateFunction) {
-    if (!input.match(condition)) {
+    if (!input.trim().match(condition)) {
       setStateFunction(false);
     } else {
       setStateFunction(true);

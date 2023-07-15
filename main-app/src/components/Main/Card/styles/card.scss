@@ -172,8 +172,15 @@ $border-font-color: rgb(255, 255, 255);
 }
 @media (max-width:850px) {
   .training_list {
-    width: 90%;
-    padding:1em; 
+    width: 99%;
+    padding:.5em; 
+  
+    .training_card_container{
+      .training_card{
+        padding: .5em; 
+        border-radius: 10px;
+      }
+    }
 
   }
 }

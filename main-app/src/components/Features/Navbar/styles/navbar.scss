@@ -117,17 +117,17 @@
   }
 
   .hamburger_menu:has(input:checked)::before {
+    position: fixed;
     rotate: 45deg;
     width: 50px;
-    position: fixed;
-    translate: 0 calc(var(--bar-height) / -2);
+    translate: 0 calc(var(--bar-height) / -.5);
   }
 
   .hamburger_menu:has(input:checked)::after {
+    position: fixed;
     rotate: -45deg;
     width: 50px;
-    position: fixed;
-    translate: 0 calc(var(--bar-height) / 2);
+    translate: 0 calc(var(--bar-height) / .45);
   }
 
   .hamburger_menu input:checked {

@@ -17,7 +17,7 @@ export const Overlay = (props) => {
 const ModalExcerciseForm = (props) => {
   return (
     <div className={styles.add_ex_container}>
-      <h1>Add Exercise</h1>
+      <h1>{props.title}</h1>
       <Form className={styles.add_ex_form}>
         <Input
           className={styles.ex_add_input_container}
@@ -60,7 +60,7 @@ const ModalExcerciseForm = (props) => {
             type="button"
             onClick={props.onClick}
           >
-            + Add Exercise
+            {props.action_btn}
           </button>
           <button
             type="button"
@@ -90,6 +90,8 @@ const FormExcerciseBackdrop = (props) => {
           onRepsChange={props.onRepsChange}
           onLoadingChange={props.onLoadingChange}
           cancelHandler={props.cancelHandler}
+          title = {props.title}
+          action_btn = {props.action_btn}
         />,
         document.getElementById("excercise-modal-form-root")
       )}

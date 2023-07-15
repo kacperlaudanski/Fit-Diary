@@ -1,52 +1,19 @@
-import React, {
-  useState,
-  useContext,
-  useReducer,
-  useCallback,
-} from "react";
-import styles from "./styles/main.module.css";
-import navStyles from "../Features/Navbar/styles/navbar.module.css";
+import React, { useState, useContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import { AuthContext } from "../../context/auth-context";
 import Navbar from "../Features/Navbar/Navbar";
 import TrainingList from "./Card/TrainingList";
-import TrainingCard from "./Card/TrainingCard";
-import { AuthContext } from "../../context/auth-context";
 import TrainingForm from "../Features/Modal/ModalTrainingForm";
 import ExcerciseForm from "../Features/Modal/ModalExcerciseForm";
-import { v4 as uuidv4 } from "uuid";
-import UserAvatar from "../../images/user.png";
-import { getAuth, signOut } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import Footer from "../Features/Footer/Footer";
-import {
-  collection,
-  doc,
-  setDoc,
-  deleteDoc,
-  updateDoc,
-} from "@firebase/firestore";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { db } from "../../firebase";
-import ExcerciseList from "./Card/ExcerciseList";
 import ButtonSearch from "./Button-Search-Bar";
-import EmptyTraining from "../Features/EmptyBox/EmptyTraining";
-import Loader from "../Features/Loader/Loader";
-import Pagination from "../Features/Pagination/Pagination";
-import LoadingError from "../Features/Error/LoadingError";
-
-const ExcerciseReducer = (state, action) => {
-  switch (action.type) {
-    case "EXCERCISE":
-      return { ...state, name: action.payload };
-    case "SERIES":
-      return { ...state, series: action.payload };
-    case "REPS":
-      return { ...state, reps: action.payload };
-    case "LOADING":
-      return { ...state, loading: action.payload };
-    default:
-      return state;
-  }
-};
+import ExerciseReducer from "./exercise-reducer";
+import MainNavbar from "./MainNavbar";
+import { doc, setDoc, updateDoc } from "@firebase/firestore";
+import { db } from "../../firebase";
+import styles from "./styles/main.module.css";
+import navStyles from "../Features/Navbar/styles/navbar.module.css";
 
 const DEFAULT_EXCERCISE = {
   excerciseId: null,
@@ -62,7 +29,7 @@ const Main = () => {
   const [trainingName, updateTrainingName] = useState("");
   const [isTrainingFormSelected, setTrainingForm] = useState(false);
 
-  const [state, dispatch] = useReducer(ExcerciseReducer, DEFAULT_EXCERCISE);
+  const [state, dispatch] = useReducer(ExerciseReducer, DEFAULT_EXCERCISE);
   const [isExcerciseFormSelected, setExcerciseForm] = useState(false);
 
   const [currentTraining, setCurrentTraining] = useState("");
@@ -77,17 +44,6 @@ const Main = () => {
   const uuid = uuidv4();
 
   //TRAINING HANDLER
-
-  const trainingsQuery = useCallback(
-    collection(db, `users/${currentUser.uid}/Trainings`),
-    [collection]
-  );
-  const [loadedTrainings, trainingLoading, trainingError] =
-    useCollectionData(trainingsQuery);
-
-  const filteredTrainings = loadedTrainings?.filter((training) => {
-    return training.name.toLowerCase().includes(searchQuery.toLowerCase());
-  });
 
   const training = {
     trainingId: uuid,
@@ -153,7 +109,7 @@ const Main = () => {
     dispatch({ type: "LOADING", payload: event.target.value });
   };
 
-  const modalExcerciseFormHandler = async () => {
+  const addExcerciseHandler = async () => {
     try {
       const docRef = await doc(
         db,
@@ -167,28 +123,8 @@ const Main = () => {
     }
   };
 
-  const excerciseAddFormHandler = (event) => {
-    setEditState(false);
-    setCurrentTraining(event.target.id);
-    setExcerciseForm(true);
-  };
-
   function cancelExcerciseHandler() {
     setExcerciseForm(false);
-  }
-
-  //LOGOUT
-
-  function logoutHandler() {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        localStorage.removeItem("user");
-        navigate("/");
-      })
-      .catch((err) => {
-        navigate("/error");
-      });
   }
 
   //EDITING TRAINING
@@ -229,45 +165,10 @@ const Main = () => {
     }
   }
 
-  //DELETING
-
-  async function deleteTrainingHandler(event) {
-    try {
-      await deleteDoc(
-        doc(db, `users/${currentUser.uid}/Trainings`, event.target.id)
-      );
-    } catch (err) {
-      navigate("/error");
-    }
-  }
-
-  //PAGINATION
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const trainingsPerPage = 5;
-  const lastTrainingIndex = trainingsPerPage * currentPage;
-  const firstTrainingIndex = lastTrainingIndex - trainingsPerPage;
-
-  const selectedTrainings = filteredTrainings?.slice(
-    firstTrainingIndex,
-    lastTrainingIndex
-  );
-
   return (
     <main className={styles.main_container}>
       <Navbar elementsClass={navStyles.main_navbar}>
-        <img
-          src={UserAvatar}
-          alt="user-avatar"
-          className={navStyles.navbar_user_avatar}
-        ></img>
-        <button
-          className={navStyles.logout_button}
-          type="button"
-          onClick={logoutHandler}
-        >
-          Log out
-        </button>
+        <MainNavbar /> 
       </Navbar>
       {isTrainingFormSelected && (
         <TrainingForm
@@ -275,16 +176,20 @@ const Main = () => {
           handleNameChange={handleNameChange}
           addTrainingHandler={isUserEditing ? editTraining : addTrainingHandler}
           cancelHandler={cancelTrainingHandler}
+          title={isUserEditing ? "Edit Training" : "Add New Training"}
+          action_btn={isUserEditing ? "Edit Training" : "Create New Training"}
         />
       )}
       {isExcerciseFormSelected && (
         <ExcerciseForm
-          onClick={isUserEditing ? editEx : modalExcerciseFormHandler}
+          onClick={isUserEditing ? editEx : addExcerciseHandler}
           onExcerciseChange={excerciseHandler}
           onSeriesChange={seriesHandler}
           onRepsChange={repsHandler}
           onLoadingChange={loadingHandler}
           cancelHandler={cancelExcerciseHandler}
+          title={isUserEditing ? "Edit Exercise" : "Add New Exercise"}
+          action_btn={isUserEditing ? "Edit Exercise" : "Add Exercise"}
         />
       )}
       <ButtonSearch
@@ -292,48 +197,14 @@ const Main = () => {
         query={searchQuery}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <TrainingList>
-        {filteredTrainings?.length === 0 && <EmptyTraining />}
-        {trainingError && <LoadingError error={trainingError} />}
-        {trainingLoading && <Loader />}
-        {selectedTrainings?.map((training, index) => {
-          return (
-            <TrainingCard
-              key={training.trainingId}
-              date={training.date}
-              title={training.name}
-              onClick={excerciseAddFormHandler}
-              editBtnId={training.trainingId}
-              deleteBtnId={training.trainingId}
-              editHandler={(event) => {
-                setCurrentTraining(event.target.id);
-                setEditState(true);
-                setTrainingForm(true);
-              }}
-              deleteHandler={deleteTrainingHandler}
-              exBtnId={training.trainingId}
-            >
-              <ExcerciseList
-                path={`users/${currentUser.uid}/Trainings/${training.trainingId}/Excercises`}
-                editExHandler={(event) => {
-                  setCurrentEx(event.target.id);
-                  setCurrentTraining(training.trainingId);
-                  setExcerciseForm(true);
-                  setEditState(true);
-                }}
-              />
-            </TrainingCard>
-          );
-        })}
-      </TrainingList>
-      {selectedTrainings?.length > 0 && (
-        <Pagination
-          totalLength={filteredTrainings?.length}
-          trainingsPerPage={trainingsPerPage}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
-      )}
+      <TrainingList
+        searchQuery={searchQuery}
+        setEditState={setEditState}
+        setTrainingForm={setTrainingForm}
+        setCurrentTraining={setCurrentTraining}
+        setExcerciseForm={setExcerciseForm}
+        setCurrentEx = {setCurrentEx}
+      />
       <Footer />
     </main>
   );
