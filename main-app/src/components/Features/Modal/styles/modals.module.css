@@ -91,6 +91,7 @@
 .add_training_container .add_training_form .training_input_group .training_input {
   width: 93%;
   height: 40px;
+  background-color: rgb(255, 255, 255);
   border: none;
   outline: none;
 }

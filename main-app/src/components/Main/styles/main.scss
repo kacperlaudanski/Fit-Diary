@@ -42,7 +42,7 @@
       border: 1px solid #fff;
       color: #fff;
       transition: 0.3s linear;
-      cursor: pointer; 
+      cursor: pointer;
     }
 
     .add_training_button:hover {
@@ -61,33 +61,39 @@
         @include flex-setup(center, center);
       }
 
+      input[type="search"]::-webkit-search-decoration,
+      input[type="search"]::-webkit-search-cancel-button,
+      input[type="search"]::-webkit-search-results-button,
+      input[type="search"]::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+      }
+
       .search_input {
         width: 90%;
         height: 40px;
         border: none;
+        background-color: rgb(255,255,255);
         outline: none;
       }
     }
   }
 }
 
-@media(max-width:850px){
-  .main_container{
-    .button_search_container{
-      width:99%; 
+@media (max-width: 850px) {
+  .main_container {
+    .button_search_container {
+      width: 99%;
       flex-direction: column;
       justify-content: space-around;
 
-      .add_training_button{
-         width:90%; 
-         margin: 1em 0;
+      .add_training_button {
+        width: 90%;
+        margin: 1em 0;
       }
       .search_input_group {
-        width:90%; 
-        margin:1em 0;
+        width: 90%;
+        margin: 1em 0;
       }
-
     }
   }
-
 }

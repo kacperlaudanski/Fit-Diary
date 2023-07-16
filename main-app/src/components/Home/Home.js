@@ -11,17 +11,22 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import styles from "./styles/home.module.css";
-import navstyles from '../Features/Navbar/styles/navbar.module.css'
+import navstyles from "../Features/Navbar/styles/navbar.module.css";
 
 const Home = () => {
-
   return (
     <React.Fragment>
       <div className={styles.home_container}>
-        <Navbar elementsClass = {navstyles.home_navbar}>
-          <li>About Us</li>
-          <li>Support</li>
-          <li>Contact</li>
+        <Navbar elementsClass={navstyles.home_navbar}>
+          <li>
+            <a>About Us</a>
+          </li>
+          <li>
+            <a>Support</a>
+          </li>
+          <li>
+            <a>Contact</a>
+          </li>
           <NavLink className={navstyles.navbar_login_button} to="/login">
             Login
           </NavLink>
@@ -41,30 +46,30 @@ const Home = () => {
               Get started
             </NavLink>
             <footer className={styles.social_media_container}>
-              <a href='#'>
+              <a href="#">
                 <FontAwesomeIcon
                   icon={faTwitter}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <FontAwesomeIcon
                   icon={faYoutube}
                   className={styles.social_media_icon}
                 />
               </a>
-              <a href='#'>
+              <a href="#">
                 <FontAwesomeIcon
                   icon={faLinkedin}
                   className={styles.social_media_icon}
                 />
-              </a>  
+              </a>
             </footer>
           </div>
           <div className={styles.image_container}>
