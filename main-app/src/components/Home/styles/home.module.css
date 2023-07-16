@@ -137,7 +137,8 @@
 }
 @media (orientation: landscape) {
   .home_container {
-    height: auto;
+    min-height: 100vh;
+    max-height: auto;
   }
   .home_container .content_container {
     height: auto;

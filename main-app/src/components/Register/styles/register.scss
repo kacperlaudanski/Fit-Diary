@@ -84,7 +84,7 @@ $icon-color: rgb(148, 148, 148);
   border: 2px solid rgb(255, 0, 0);
 }
 
-@media (0px < width < 768px) {
+@media (width < 768px) {
   .container{
     .register_container {
       width: 100%;
