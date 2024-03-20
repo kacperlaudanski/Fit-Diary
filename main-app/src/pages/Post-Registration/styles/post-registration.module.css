@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.get_started_container {
+.post_registration_container {
   width: 100%;
   height: 100vh;
   background: rgb(131, 58, 180);
@@ -13,32 +13,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
-.get_started_container .content_box {
+.post_registration_container .post_registration_text_box {
   width: 40%;
-  height: 50vh;
+  height: 70vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   text-align: center;
-  border: 20px solid rgba(255, 255, 255, 0.454);
-  padding: 2em;
+  border-radius: 15px;
+  padding: 4em;
 }
-.get_started_container .content_box span {
+.post_registration_container .post_registration_text_box .post_registration_title {
   font-family: "Pacifico", cursive;
   font-size: 4rem;
 }
 
 @media (max-width: 850px) {
-  .get_started_container .content_box {
+  .post_registration_container .post_registration_text_box {
     width: 90%;
     height: auto;
-    border: none;
-  }
-  .get_started_container .content_box button {
-    margin-top: 2em;
   }
 }
 
-/*# sourceMappingURL=get-started.module.css.map */
+/*# sourceMappingURL=post-registration.module.css.map */

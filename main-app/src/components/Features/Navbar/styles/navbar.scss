@@ -26,8 +26,9 @@
     margin:0 1em !important; 
   }
 
-  .home_navbar {
+  .landing_navbar {
     width: 40%;
+    height:70px; 
     list-style: none;
     @include flex-setup(center, space-between);
     color: #fff;
@@ -159,7 +160,7 @@
   .navbar {
     padding: 0 1em;
 
-    .home_navbar {
+    .landing_navbar {
       display: none;
 
       .navbar_login_button {
@@ -185,7 +186,7 @@
       }
     }
 
-    .hamburger_menu:has(input:checked) + .home_navbar{
+    .hamburger_menu:has(input:checked) + .landing_navbar{
       @include flex-setup(center, space-around);
       flex-direction: column;
       position: fixed;

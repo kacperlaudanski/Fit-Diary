@@ -1,7 +1,13 @@
-@mixin flex-setup($align-items, $justify-content) {
+@mixin flex-setup($align-items:stretch, $justify-content:flex-start, $flex-direction: row) {
   display: flex;
-  align-items: $align-items;
-  justify-content: $justify-content;
+  flex-direction: $flex-direction; 
+
+  @if $align-items != stretch {
+    align-items: $align-items;
+  }
+  @if $justify-content != flex-start {
+    justify-content: $justify-content;
+  }
 }
 $border-font-color: rgb(255, 255, 255);
 
@@ -10,11 +16,10 @@ $border-font-color: rgb(255, 255, 255);
   margin: 0;
   box-sizing: border-box;
 }
-.home_container {
+.landing_container {
   width: 100%;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  @include flex-setup($flex-direction: column);
   background: rgb(131, 58, 180);
   background: linear-gradient(
     90deg,
@@ -23,8 +28,7 @@ $border-font-color: rgb(255, 255, 255);
     rgba(252, 176, 69, 1) 100%
   );
 
-  .content_container {
-    @include flex-setup(left, flex-start);
+  .landing_content_box {
     width: 100%;
     height: 100vh;
     box-sizing: border-box;
@@ -32,31 +36,31 @@ $border-font-color: rgb(255, 255, 255);
     margin-top: 7em;
     color: $border-font-color;
 
-    .text_container {
+    .landing_text_box {
       width: 50%;
       font-family: "Roboto", sans-serif;
       display: flex;
       flex-direction: column;
       overflow: hidden;
 
-      h1 {
+      .landing_text_header {
         font-size: 3rem;
         letter-spacing: 3px;
       }
 
-      p {
+      .landing_text_paragraph {
         margin-top: 1.5em;
         font-size: 1.1rem;
         font-weight: 300;
         line-height: 25px;
         overflow: hidden;
 
-        span {
+        .landing_text_logo {
           font-family: "Pacifico", cursive;
         }
       }
 
-      .get_started_button {
+      .landing_cta_btn {
         width: 25%;
         height: 50px;
         border-radius: 25px;
@@ -70,11 +74,11 @@ $border-font-color: rgb(255, 255, 255);
         cursor: pointer;
       }
 
-      .get_started_button:hover {
+      .landing_cta_btn:hover {
         background-color: rgba(255, 133, 208, 0.492);
       }
 
-      .social_media_container {
+      .landing_footer {
         width: 40%;
         @include flex-setup(center, space-between);
         font-size: 1.2rem;
@@ -88,13 +92,13 @@ $border-font-color: rgb(255, 255, 255);
           pointer-events: none;
         }
 
-        .social_media_icon {
+        .landing_footer_sm_icon {
           font-size: 1.5rem;
         }
       }
     }
 
-    .image_container {
+    .landing_image{
       width: 50%;
       @include flex-setup(center, center);
       overflow: hidden;
@@ -111,24 +115,24 @@ $border-font-color: rgb(255, 255, 255);
 }
 
 @media (width<768px) {
-  .home_container {
+  .landing_container{
     height: auto;
 
-    .content_container {
+    .landing_content_box{
       padding: 1em;
-      .text_container {
+      .landing_text_box{
         width: 100%;
 
-        .get_started_button {
+        .landing_cta_btn{
           width: 100%;
         }
 
-        .social_media_container {
+        .landing_footer{
           width: 100%;
           @include flex-setup(center, space-around);
         }
       }
-      .image_container {
+      .landing_image{
         display: none;
       }
     }
@@ -136,21 +140,21 @@ $border-font-color: rgb(255, 255, 255);
 }
 
 @media (767px < width < 1023px) {
-  .home_container {
-    .content_container {
-      .text_container {
+  .landing_container{
+    .landing_content_box{
+      .landing_text_box{
         width: 100%;
 
-        .get_started_button {
+        .landing_cta_btn{
           width: 100%;
         }
 
-        .social_media_container {
+        .landing_footer {
           width: 100%;
           @include flex-setup(center, space-around);
         }
       }
-      .image_container {
+      .landing_image{
         display: none;
       }
     }
@@ -158,10 +162,10 @@ $border-font-color: rgb(255, 255, 255);
 }
 
 @media (orientation: landscape) {
-  .home_container {
+  .landing_container{
     min-height:100vh; 
     max-height: auto;
-    .content_container {
+    .landing_content_box{
       height: auto;
     }
   }
