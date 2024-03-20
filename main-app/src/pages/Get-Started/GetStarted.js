@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import LoginButton from "../Features/Buttons/Login&RegisterButton";
+import LoginButton from "../../components/Features/Buttons/Login&RegisterButton";
 import styles from "./styles/get-started.module.css";
 
 const GetStarted = () => {

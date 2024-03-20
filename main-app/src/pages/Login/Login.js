@@ -1,8 +1,8 @@
 import React, { useContext, useReducer, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Form from "../Features/Form/FormWrapper";
-import Input from "../Features/Input/Input";
-import LoginButton from "../Features/Buttons/Login&RegisterButton";
+import Form from "../../components/Features/Form/FormWrapper";
+import Input from "../../components/Features/Input/Input";
+import LoginButton from "../../components/Features/Buttons/Login&RegisterButton";
 import styles from "./styles/login.module.css";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";

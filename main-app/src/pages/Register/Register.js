@@ -1,7 +1,7 @@
 import React, { useReducer, useState } from "react";
-import Form from "../Features/Form/FormWrapper";
-import Input from "../Features/Input/Input";
-import RegisterButton from "../Features/Buttons/Login&RegisterButton";
+import Form from "../../components/Features/Form/FormWrapper";
+import Input from "../../components/Features/Input/Input";
+import RegisterButton from "../../components/Features/Buttons/Login&RegisterButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./styles/register.module.css";
 import { auth } from "../../firebase";
