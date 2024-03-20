@@ -1,0 +1,186 @@
+@mixin flex-setup($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+$bg-color: rgba(255, 255, 255, 0.26);
+$bg-card: rgb(74, 78, 105);
+$first-gray: rgba(255, 255, 255, 0.292);
+$second-gray: rgba(255, 255, 255, 0.247);
+$col-gray: rgba(255, 255, 255, 0.367);
+$border-font-color: rgb(255, 255, 255);
+
+.training_list {
+  margin: 4em 0;
+  width: 80%;
+  height: auto;
+  background-color: $bg-color;
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 4em;
+  color: $border-font-color;
+  display: flex;
+  flex-direction: column;
+
+  .training_card_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .training_card {
+      width: 100%;
+      height: auto;
+      color: $border-font-color;
+      background-color: $bg-card;
+      margin-top: 2em;
+      border-radius: 15px;
+      box-sizing: border-box;
+      padding: 1em;
+      overflow: hidden;
+      z-index: 1;
+
+      .action_buttons {
+        width: 100%;
+        @include flex-setup(center, space-between);
+        margin-bottom: 1em;
+
+        button {
+          width: 20px;
+          height:20px;
+          font-size: 1.5rem;
+          color: $first-gray;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+          background-color: rgba(255, 255, 255, 0);
+          border: none;
+          cursor: pointer;
+        }
+        .edit_btn_white{
+          background-image: url("../../../../images/editBtn-white.png");
+        }
+  
+        .delete_btn_white{
+          background-image: url("../../../../images/close-white.png");
+        }
+      }
+
+
+
+      .training_card_date {
+        @include flex-setup(center, flex-start);
+        font-size: 0.9rem;
+        margin: 0.5em 0;
+        width: fit-content;
+        height: 30px;
+        background-color: $first-gray;
+        box-sizing: border-box;
+        padding: 0.5em;
+        border-radius: 5px;
+        overflow: hidden;
+
+        .date {
+          margin-left: 0.5em;
+        }
+      }
+
+      .stats_table {
+        width: 100%;
+        height: 60px;
+        margin-top: 2em;
+        @include flex-setup(center, center);
+        text-align: center;
+        overflow: hidden;
+        background-color: $second-gray;
+        border-radius: 10px;
+
+        .table_col {
+          min-width: 16.7%;
+          height: auto;
+          box-sizing: border-box;
+          border-right: 1px solid rgba(255, 255, 255, 0.367);
+        }
+
+        .last_stat {
+          border: none;
+        }
+      }
+
+      .ex_container {
+        width: 100%;
+        min-height: 50px;
+        display: flex;
+
+        .ex_col {
+          width: 20%;
+          box-sizing: border-box;
+          padding: 1em;
+          border: 1px solid #fff;
+          text-align: center;
+        }
+
+        .action_ex_col {
+          @include flex-setup(center, space-around);
+          box-sizing: border-box;
+          padding: 1em;
+          background-color: rgba(255, 255, 255, 0.578);
+          border-radius: 0 10px 10px 0;
+
+          button {
+            font-size: 1.3rem;
+            color: rgb(255, 255, 255);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-color: rgba(255, 255, 255, 0);
+            width: 17px;
+            height: 17px;
+            border: none;
+            cursor: pointer;
+          }
+
+          .edit_btn {
+            background-image: url("../../../../images/editBtn.png");
+          }
+
+          .delete_btn {
+            background-image: url("../../../../images/close.png");
+          }
+        }
+      }
+    }
+    .add_excercise_button {
+      width: 100%;
+      height: 60px;
+      position: relative;
+      top: -15px;
+      z-index: 0;
+      border-radius: 0 0 15px 15px;
+      border: none;
+      box-sizing: border-box;
+      padding-top: 1em;
+      background-color: rgb(183, 2, 255);
+      color: $border-font-color;
+      transition: 0.3s linear;
+    }
+
+    .add_excercise_button:hover {
+      background-color: rgba(183, 2, 255, 0.665);
+      cursor: pointer;
+    }
+  }
+}
+@media (max-width:850px) {
+  .training_list {
+    width: 99%;
+    padding:.5em; 
+  
+    .training_card_container{
+      .training_card{
+        padding: .5em; 
+        border-radius: 10px;
+      }
+    }
+
+  }
+}

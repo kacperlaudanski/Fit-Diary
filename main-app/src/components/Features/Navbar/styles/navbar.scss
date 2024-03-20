@@ -1,0 +1,220 @@
+@mixin flex-setup($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+
+:root {
+  --bar-width: 50px;
+  --bar-height: 8px;
+  --hamburger-gap: 6px;
+  --animation-timing: 200ms ease-in-out;
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+}
+
+.navbar {
+  width: 100%;
+  height: auto;
+  margin-top: 2em;
+  box-sizing: border-box;
+  padding: 0 4.375em;
+  @include flex-setup(center, space-between);
+  position: relative;
+  overflow: hidden;
+
+  h2{
+    margin:0 1em !important; 
+  }
+
+  .home_navbar {
+    width: 40%;
+    list-style: none;
+    @include flex-setup(center, space-between);
+    color: #fff;
+    transition: 0.3s linear;
+
+    li{
+      height:40px; 
+      @include flex-setup(center, center); 
+
+      a{
+        height:100%; 
+        transition: .3s linear; 
+        @include flex-setup(center, center); 
+      }
+  
+      a:hover{
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.587); 
+       }
+    }
+
+    .navbar_login_button {
+      width:25%;
+      height: 40px;
+      border: 1px solid #fff;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.159);
+      color: #fff;
+      text-decoration: none;
+      @include flex-setup(center, center);
+      transition: 0.3s linear;
+      cursor: pointer;
+    }
+
+    .navbar_login_button:hover {
+      background-color: rgba(131, 58, 180, 0.565);
+    }
+  }
+
+  .main_navbar {
+    width: 15%;
+    @include flex-setup(center, space-between);
+
+    .navbar_user_avatar {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .logout_button {
+      width: 60%;
+      height: 40px;
+      border: 1px solid #fff;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.159);
+      color: #fff;
+      text-decoration: none;
+      @include flex-setup(center, center);
+      transition: 0.3s linear;
+      cursor: pointer;
+    }
+
+    .logout_button:hover {
+      background-color: rgba(131, 58, 180, 0.565);
+    }
+  }
+
+  .hamburger_menu::before,
+  .hamburger_menu::after,
+  .hamburger_menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: rgb(255, 255, 255);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+      rotate var(--animation-timing), display var(--animation-timing),
+      background-color var(--animation-timing);
+  }
+
+  .hamburger_menu {
+    display: none;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    position: absolute;
+    right: 1em;
+    z-index: 998;
+  }
+
+  .hamburger_menu input {
+    appearance: none;
+    pointer-events: none;
+    outline: none;
+  }
+
+  .hamburger_menu:has(input:checked)::before {
+    position: fixed;
+    rotate: 45deg;
+    width: 50px;
+    translate: 0 calc(var(--bar-height) / -.5);
+    z-index: 9999;
+  }
+
+  .hamburger_menu:has(input:checked)::after {
+    position: fixed;
+    rotate: -45deg;
+    width: 50px;
+    translate: 0 calc(var(--bar-height) / .45);
+    z-index: 9999;
+  }
+
+  .hamburger_menu input:checked {
+    opacity: 0;
+    width: 0;
+  }
+
+  h2 {
+    font-family: "Pacifico", cursive;
+    color: #fff;
+    font-size: 1.7rem;
+    margin: 1em;
+  }
+}
+@media (width < 850px) {
+  .navbar {
+    padding: 0 1em;
+
+    .home_navbar {
+      display: none;
+
+      .navbar_login_button {
+        width: 40%;
+        height: 50px;
+      }
+    }
+
+    .main_navbar{
+      display: none;
+
+      .navbar_user_avatar{
+        width: 100px;
+        height: 100px;
+        box-sizing: border-box;
+        margin: 2em;
+        cursor: pointer;
+      }
+
+      .logout_button{
+        width:40%;
+        height:50px;
+      }
+    }
+
+    .hamburger_menu:has(input:checked) + .home_navbar{
+      @include flex-setup(center, space-around);
+      flex-direction: column;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(84, 84, 84, 0.74);
+      z-index: 2;
+      font-size: 1.5rem;
+    }
+
+    .hamburger_menu:has(input:checked) + .main_navbar{
+      @include flex-setup(center, center);
+      flex-direction: column;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(84, 84, 84, 0.74);
+      z-index: 2;
+      font-size: 1.5rem;
+    }
+
+    .hamburger_menu {
+      @include flex-setup(center, center);
+    }
+  }
+}

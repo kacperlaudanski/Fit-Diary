@@ -1,0 +1,111 @@
+@mixin flex-setup($align-items, $justify-content) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+$white: rgb(255, 255, 255);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgb(255, 101, 227) 50%,
+    rgba(253, 29, 29, 1) 100%
+  );
+
+  .login_container {
+    width: 50%;
+    height: 100vh;
+    padding: 0 5em;
+    @include flex-setup(flex-start, center);
+    flex-direction: column;
+    color: $white;
+
+    .form_container {
+      height: 40vh;
+      width: 100%;
+      margin-top: 1em;
+      @include flex-setup(flex-start, space-around);
+      flex-direction: column;
+
+      .login_input_container {
+        width: 100%;
+        height: 40px;
+        box-sizing: border-box;
+        background-color: $white;
+        border-radius: 10px;
+        position: relative;
+        @include flex-setup(flex-start, center);
+
+        .icon_container {
+          width: 7%;
+          height: 100%;
+          @include flex-setup(center, center);
+          color: rgb(148, 148, 148);
+        }
+
+        .login_input {
+          width: 93%;
+          height: 100%;
+          border: none;
+          outline: none;
+        }
+      }
+
+      .login_error {
+        color: rgb(255, 0, 0);
+      }
+
+      .login_options {
+        width: 100%;
+        @include flex-setup(flex-start, space-between);
+      }
+    }
+  }
+  .image_container {
+    width: 50%;
+    height: 100vh;
+    @include flex-setup(center, center);
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media (width < 1024px) {
+    .login_container {
+      width: 100%;
+      padding: 0 1em;
+
+      .login_options {
+        font-size: 0.8rem;
+      }
+    }
+    .image_container {
+      display: none;
+    }
+  }
+
+  @media (orientation: landscape) {
+    .login_container {
+      .form_container {
+        height: 45vh;
+      }
+    }
+  }
+}
+
+.error {
+  border: 2px solid rgb(255, 0, 0);
+}
