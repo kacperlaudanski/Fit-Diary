@@ -21,8 +21,9 @@
 .navbar h2 {
   margin: 0 1em !important;
 }
-.navbar .home_navbar {
+.navbar .landing_navbar {
   width: 40%;
+  height: 70px;
   list-style: none;
   display: flex;
   align-items: center;
@@ -30,24 +31,24 @@
   color: #fff;
   transition: 0.3s linear;
 }
-.navbar .home_navbar li {
+.navbar .landing_navbar li {
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.navbar .home_navbar li a {
+.navbar .landing_navbar li a {
   height: 100%;
   transition: 0.3s linear;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.navbar .home_navbar li a:hover {
+.navbar .landing_navbar li a:hover {
   cursor: pointer;
   color: rgba(255, 255, 255, 0.587);
 }
-.navbar .home_navbar .navbar_login_button {
+.navbar .landing_navbar .navbar_login_button {
   width: 25%;
   height: 40px;
   border: 1px solid #fff;
@@ -61,7 +62,7 @@
   transition: 0.3s linear;
   cursor: pointer;
 }
-.navbar .home_navbar .navbar_login_button:hover {
+.navbar .landing_navbar .navbar_login_button:hover {
   background-color: rgba(131, 58, 180, 0.565);
 }
 .navbar .main_navbar {
@@ -148,10 +149,10 @@
   .navbar {
     padding: 0 1em;
   }
-  .navbar .home_navbar {
+  .navbar .landing_navbar {
     display: none;
   }
-  .navbar .home_navbar .navbar_login_button {
+  .navbar .landing_navbar .navbar_login_button {
     width: 40%;
     height: 50px;
   }
@@ -169,7 +170,7 @@
     width: 40%;
     height: 50px;
   }
-  .navbar .hamburger_menu:has(input:checked) + .home_navbar {
+  .navbar .hamburger_menu:has(input:checked) + .landing_navbar {
     display: flex;
     align-items: center;
     justify-content: space-around;
