@@ -4,7 +4,7 @@ import Landing from "./pages/Landing/Landing";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import PostRegistration from "./pages/Post-Registration/PostRegistration";
-import Main from "./components/Main/Main";
+import Main from "./pages/Main/Main";
 import ErrorPage from "./components/Features/Error/ErrorPage";
 import { AuthContext } from "./context/auth-context";
 

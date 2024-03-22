@@ -3,13 +3,13 @@ import { useCollectionData } from "react-firebase-hooks/firestore";
 import styles from "./styles/card.module.css";
 import TrainingCard from "./TrainingCard";
 import ExcerciseList from "./ExcerciseList";
-import EmptyTraining from "../../Features/EmptyBox/EmptyTraining";
-import Loader from "../../Features/Loader/Loader";
-import LoadingError from "../../Features/Error/LoadingError";
+import EmptyTraining from '../Features/EmptyBox/EmptyTraining'
+import Loader from "../Features/Loader/Loader";
+import LoadingError from "../Features/Error/LoadingError";
 import { collection } from "@firebase/firestore";
-import { AuthContext } from "../../../context/auth-context";
-import { db } from "../../../firebase";
-import Pagination from "../../Features/Pagination/Pagination";
+import { AuthContext } from "../../context/auth-context";
+import { db } from "../../firebase";
+import Pagination from "../Features/Pagination/Pagination";
 
 const TrainingList = ({
   searchQuery,
