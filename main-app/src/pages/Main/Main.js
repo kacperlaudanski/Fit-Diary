@@ -1,19 +1,19 @@
-import React, { useState, useContext, useReducer } from "react";
+import { useState, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../context/auth-context";
-import Navbar from "../Features/Navbar/Navbar";
-import TrainingList from "./Card/TrainingList";
-import TrainingForm from "../Features/Modal/ModalTrainingForm";
-import ExcerciseForm from "../Features/Modal/ModalExcerciseForm";
-import MainFooter from "../Features/Footers/MainFooter";
-import ButtonSearch from "./Button-Search-Bar";
+import Navbar from "../../components/Features/Navbar/Navbar";
+import TrainingList from "../../components/Card/TrainingList";
+import TrainingForm from "../../components/Features/Modal/ModalTrainingForm";
+import ExcerciseForm from "../../components/Features/Modal/ModalExcerciseForm";
+import MainFooter from "../../components/Features/Footers/MainFooter";
 import ExerciseReducer from "./exercise-reducer";
-import MainNavbar from "./MainNavbar";
 import { doc, setDoc, updateDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 import styles from "./styles/main.module.css";
-import navStyles from "../Features/Navbar/styles/navbar.module.css";
+import navStyles from "../../components/Features/Navbar/styles/navbar.module.css";
+import ButtonSearch from "../../components/Features/Buttons/Button-Search-Bar";
+import MainNavbar from "../../components/Features/Navbar/MainNavbar";
 
 const DEFAULT_EXCERCISE = {
   excerciseId: null,

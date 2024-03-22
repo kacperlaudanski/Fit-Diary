@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import styles from "./styles/card.module.css";
 import AddEx from "./AddExerciseButton";
 import ExerciseTable from "./ExerciseTable";
-import { db } from "../../../firebase";
+import { db } from "../../firebase";
 import { doc, deleteDoc } from "@firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../context/auth-context";
+import { AuthContext } from "../../context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 

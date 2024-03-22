@@ -47,10 +47,10 @@
   cursor: pointer;
 }
 .training_list .training_card_container .training_card .action_buttons .edit_btn_white {
-  background-image: url("../../../../images/editBtn-white.png");
+  background-image: url("../../../images/editBtn-white.png");
 }
 .training_list .training_card_container .training_card .action_buttons .delete_btn_white {
-  background-image: url("../../../../images/close-white.png");
+  background-image: url("../../../images/close-white.png");
 }
 .training_list .training_card_container .training_card .training_card_date {
   display: flex;
@@ -124,10 +124,10 @@
   cursor: pointer;
 }
 .training_list .training_card_container .training_card .ex_container .action_ex_col .edit_btn {
-  background-image: url("../../../../images/editBtn.png");
+  background-image: url("../../../images/editBtn.png");
 }
 .training_list .training_card_container .training_card .ex_container .action_ex_col .delete_btn {
-  background-image: url("../../../../images/close.png");
+  background-image: url("../../../images/close.png");
 }
 .training_list .training_card_container .add_excercise_button {
   width: 100%;
