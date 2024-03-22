@@ -10,7 +10,7 @@ const PostRegistration = () => {
         <h1>
           <span className={styles.post_registration_title}>Welcome !</span><br/> Log in and start your dream fit life today! 
         </h1>
-        <LoginButton buttonHandler={useNavigateTo('/login')}>Log in</LoginButton>
+        <LoginButton buttonHandler={useNavigateTo('login')}>Log in</LoginButton>
       </div>
     </div>
   );

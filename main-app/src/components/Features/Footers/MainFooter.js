@@ -1,5 +1,4 @@
-import React from "react";
-import styles from "./styles/footer.module.css";
+import styles from "./styles/footers.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTwitter,

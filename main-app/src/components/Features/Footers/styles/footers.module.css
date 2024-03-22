@@ -50,6 +50,25 @@
   color: #fff;
 }
 
+.landing_footer {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  margin-top: 5em;
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+.landing_footer a {
+  color: rgb(255, 255, 255);
+  pointer-events: none;
+}
+.landing_footer .landing_footer_sm_icon {
+  font-size: 1.5rem;
+}
+
 @media (max-width: 850px) {
   .footer_container {
     height: auto;
@@ -67,6 +86,12 @@
   .footer_container .content_container .socials {
     width: 30%;
   }
+  .landing_footer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 
-/*# sourceMappingURL=footer.module.css.map */
+/*# sourceMappingURL=footers.module.css.map */

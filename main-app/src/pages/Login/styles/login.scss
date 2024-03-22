@@ -1,7 +1,8 @@
-@mixin flex-setup($align-items, $justify-content) {
+@mixin flex-setup($align-items, $justify-content, $flex-direction:row) {
   display: flex;
   align-items: $align-items;
   justify-content: $justify-content;
+  flex-direction: $flex-direction;
 }
 $white: rgb(255, 255, 255);
 
@@ -12,7 +13,7 @@ $white: rgb(255, 255, 255);
   font-family: Roboto;
 }
 
-.container {
+.login_page {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -27,16 +28,22 @@ $white: rgb(255, 255, 255);
     width: 50%;
     height: 100vh;
     padding: 0 5em;
-    @include flex-setup(flex-start, center);
-    flex-direction: column;
+    @include flex-setup(flex-start, center, column);
     color: $white;
 
-    .form_container {
+    .login_header{
+      font-size:2.5rem; 
+    }
+
+    .login_header_message{
+      margin: 1em 0;
+    }
+
+    .login_form_wrapper{
       height: 40vh;
       width: 100%;
       margin-top: 1em;
-      @include flex-setup(flex-start, space-around);
-      flex-direction: column;
+      @include flex-setup(flex-start, space-around, column);
 
       .login_input_container {
         width: 100%;
@@ -47,7 +54,7 @@ $white: rgb(255, 255, 255);
         position: relative;
         @include flex-setup(flex-start, center);
 
-        .icon_container {
+        .login_input_icon {
           width: 7%;
           height: 100%;
           @include flex-setup(center, center);
@@ -72,12 +79,12 @@ $white: rgb(255, 255, 255);
       }
     }
   }
-  .image_container {
+  .login_image_container {
     width: 50%;
     height: 100vh;
     @include flex-setup(center, center);
 
-    img {
+    .login_image{
       width: 100%;
       height: 100%;
     }
@@ -92,14 +99,14 @@ $white: rgb(255, 255, 255);
         font-size: 0.8rem;
       }
     }
-    .image_container {
+    .login_image_container {
       display: none;
     }
   }
 
   @media (orientation: landscape) {
     .login_container {
-      .form_container {
+      .login_form_wrapper {
         height: 45vh;
       }
     }
