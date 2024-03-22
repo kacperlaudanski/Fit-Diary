@@ -1,7 +1,8 @@
-@mixin flex-setup($align-items, $justify-content) {
+@mixin flex-setup($align-items, $justify-content, $flex-direction:row) {
   display: flex;
   align-items: $align-items;
   justify-content: $justify-content;
+  flex-direction: $flex-direction;
 }
 $font-color: rgb(255, 255, 255);
 $icon-color: rgb(148, 148, 148);
@@ -13,7 +14,7 @@ $icon-color: rgb(148, 148, 148);
   font-family: Roboto;
 }
 
-.container {
+.register_page{
   height: 100vh;
   width: 100%;
   display: flex;
@@ -29,25 +30,27 @@ $icon-color: rgb(148, 148, 148);
     width: 40%;
     padding: 0 5em;
     color: $font-color;
-    @include flex-setup(flex-start, center);
-    flex-direction: column;
+    @include flex-setup(flex-start, center, column);
 
-    .form_container {
+    .register_header{
+      font-size:2.5rem; 
+    }
+
+    .register_form_wrapper {
       height: 60vh;
       width: 100%;
       margin-top: 1em;
-      @include flex-setup(flex-start, space-around);
-      flex-direction: column;
+      @include flex-setup(flex-start, space-around, column);
 
       .register_input_container {
         width: 100%;
         height: 40px;
-        background-color: #fff;
+        background-color: rgb(255, 255, 255);
         border-radius: 10px;
         position: relative;
         @include flex-setup(flex-start, center);
 
-        .icon_container {
+        .register_input_icon {
           width: 7%;
           height: 100%;
           @include flex-setup(center, center);
@@ -62,18 +65,18 @@ $icon-color: rgb(148, 148, 148);
         }
       }
 
-      small a{
+      .register_login_link{
         color: rgb(255, 133, 208);
       }
     }
   }
 
-  .image_container {
+  .register_image_container {
     width: 60%;
     height: 100vh;
     @include flex-setup(center, center);
 
-    img {
+    .register_image {
       width: 100%;
       height: 100%;
     }
@@ -85,28 +88,28 @@ $icon-color: rgb(148, 148, 148);
 }
 
 @media (width < 768px) {
-  .container{
+  .register_page{
     .register_container {
       width: 100%;
       padding: 0 1em;
     }
-    .image_container {
+    .register_image_container {
       display: none;
     }
   }
 }
 
 @media (767px < width < 1025px) {
-  .container {
+  .register_page {
     justify-content: center;
     .register_container {
       width: 90%;
       align-items: center;
-      .form_container {
+      .register_form_wrapper {
         align-items: center;
       }
     }
-    .image_container {
+    .register_image_container {
       display: none;
     }
   }
@@ -114,11 +117,11 @@ $icon-color: rgb(148, 148, 148);
 }
 
 @media (orientation: landscape) {
-  .container{
+  .register_page{
     height:auto;
     .register_container {
       padding:4em;
-      .form_container {
+      .register_form_wrapper {
         height: 70vh;
       }
     }

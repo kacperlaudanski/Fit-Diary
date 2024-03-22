@@ -1,13 +1,13 @@
-import React, { useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import Form from "../../components/Features/Form/FormWrapper";
 import Input from "../../components/Features/Input/Input";
 import RegisterButton from "../../components/Features/Buttons/Login&RegisterButton";
 import { NavLink, useNavigate } from "react-router-dom";
-import styles from "./styles/register.module.css";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { faUser, faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import BodybuilderImg from "../../images/bodybuilder.png";
+import styles from "./styles/register.module.css";
 
 const registerReducer = (state, action) => {
   switch (action.type) {
@@ -83,11 +83,10 @@ const Register = () => {
   }
 
   return (
-    <React.Fragment>
-        <div className={styles.container}>
+        <div className={styles.register_page}>
           <div className={styles.register_container}>
-            <h1>Create an account 🚀</h1>
-            <Form className={styles.form_container}>
+            <h1 className={styles.register_header}>Create an account 🚀</h1>
+            <Form className={styles.register_form_wrapper}>
               <Input
                 type="text"
                 placeholder="Firstname"
@@ -95,7 +94,7 @@ const Register = () => {
                   !firstnameValidation && styles.error
                 }`}
                 inputClass={styles.register_input}
-                iconboxClass={styles.icon_container}
+                iconboxClass={styles.register_input_icon}
                 icon={faUser}
                 onChange={firstnameHandler}
                 errorMessage={!firstnameValidation && "Invalid value"}
@@ -107,7 +106,7 @@ const Register = () => {
                   !lastnameValidation && styles.error
                 }`}
                 inputClass={styles.register_input}
-                iconboxClass={styles.icon_container}
+                iconboxClass={styles.register_input_icon}
                 icon={faUser}
                 onChange={lastnameHandler}
                 errorMessage={!lastnameValidation && "Invalid value"}
@@ -119,7 +118,7 @@ const Register = () => {
                   !passwordValidation && styles.error
                 }`}
                 inputClass={styles.register_input}
-                iconboxClass={styles.icon_container}
+                iconboxClass={styles.register_input_icon}
                 icon={faKey}
                 onChange={passwordHandler}
                 errorMessage={!passwordValidation && "Min 6 char."}
@@ -131,7 +130,7 @@ const Register = () => {
                   !emailValidation && styles.error
                 }`}
                 inputClass={styles.register_input}
-                iconboxClass={styles.icon_container}
+                iconboxClass={styles.register_input_icon}
                 icon={faEnvelope}
                 onChange={emailHandler}
                 errorMessage={!emailValidation && "Invalid email"}
@@ -154,15 +153,14 @@ const Register = () => {
                 Create an account
               </RegisterButton>
               <small>
-                Already have an account ? <NavLink to="/login">Log in</NavLink>
+                Already have an account ? <NavLink to="/login" className={styles.register_login_link}>Log in</NavLink>
               </small>
             </Form>
           </div>
-          <div className={styles.image_container}>
-            <img src={BodybuilderImg} alt="bodybuilder"></img>
+          <div className={styles.register_image_container}>
+            <img src={BodybuilderImg} className={styles.register_image} alt="bodybuilder"></img>
           </div>
         </div>
-    </React.Fragment>
   );
 };
 
