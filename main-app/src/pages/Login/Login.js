@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from "react";
+import { useContext, useReducer, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Form from "../../components/Features/Form/FormWrapper";
 import Input from "../../components/Features/Input/Input";
@@ -54,21 +54,21 @@ const Login = () => {
   }
 
   return (
-    <React.Fragment>
-        <div className={styles.container}>
+    <>
+        <div className={styles.login_page}>
           <div className={styles.login_container}>
-            <h1>Hey, hello 👋</h1>
-            <small className={styles.message}>
+            <h1 className={styles.login_header}>Hey, hello 👋</h1>
+            <small className={styles.login_header_message}>
               Enter the information you entered while registering.
             </small>
-            <Form className={styles.form_container}>
+            <Form className={styles.login_form_wrapper}>
               <Input
                 type="email"
                 placeholder="E-mail"
                 onChange={emailHandler}
                 className={styles.login_input_container}
-                iconboxClass={styles.icon_container}
                 inputClass={styles.login_input}
+                iconboxClass={styles.login_input_icon}
                 icon={faEnvelope}
               />
               <Input
@@ -76,7 +76,7 @@ const Login = () => {
                 placeholder="Password"
                 onChange={passwordHandler}
                 className={styles.login_input_container}
-                iconboxClass={styles.icon_container}
+                iconboxClass={styles.login_input_icon}
                 inputClass={styles.login_input}
                 icon={faKey}
               />
@@ -89,11 +89,11 @@ const Login = () => {
               </div>
             </Form>
           </div>
-          <div className={styles.image_container}>
-            <img src={WorkoutImg} alt="outside-workout"></img>
+          <div className={styles.login_image_container}>
+            <img src={WorkoutImg} className={styles.login_image} alt="outside-workout"></img>
           </div>
         </div>
-    </React.Fragment>
+    </>
   );
 };
 

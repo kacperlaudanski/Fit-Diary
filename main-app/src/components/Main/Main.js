@@ -6,7 +6,7 @@ import Navbar from "../Features/Navbar/Navbar";
 import TrainingList from "./Card/TrainingList";
 import TrainingForm from "../Features/Modal/ModalTrainingForm";
 import ExcerciseForm from "../Features/Modal/ModalExcerciseForm";
-import Footer from "../Features/Footer/Footer";
+import MainFooter from "../Features/Footers/MainFooter";
 import ButtonSearch from "./Button-Search-Bar";
 import ExerciseReducer from "./exercise-reducer";
 import MainNavbar from "./MainNavbar";
@@ -205,7 +205,7 @@ const Main = () => {
         setExcerciseForm={setExcerciseForm}
         setCurrentEx = {setCurrentEx}
       />
-      <Footer />
+      <MainFooter />
     </main>
   );
 };

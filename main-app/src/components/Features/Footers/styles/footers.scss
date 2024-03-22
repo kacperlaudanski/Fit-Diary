@@ -52,6 +52,25 @@
   }
 }
 
+.landing_footer {
+  width: 40%;
+  @include flex-setup(center, space-between);
+  font-size: 1.2rem;
+  margin-top: 5em;
+  position: relative;
+  left: 0;
+  bottom: 0;
+
+  a {
+    color: rgb(255, 255, 255);
+    pointer-events: none;
+  }
+
+  .landing_footer_sm_icon {
+    font-size: 1.5rem;
+  }
+}
+
 @media (max-width: 850px) {
   .footer_container {
     height: auto;
@@ -72,5 +91,9 @@
         width: 30%;
       }
     }
+  }
+  .landing_footer{
+    width: 100%;
+    @include flex-setup(center, space-around);
   }
 }
