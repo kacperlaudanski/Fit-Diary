@@ -1,6 +1,5 @@
-import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ErrorMessage from "../Error/ErrorMessage";
+import ErrorMessage from '../Error/ErrorMessage';
 
 const Input = (props) => {
   return (

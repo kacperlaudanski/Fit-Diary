@@ -1,4 +1,4 @@
-import LoginButton from "../../components/Features/Buttons/Login&RegisterButton";
+import LoginButton from "../../components/Buttons/Login&RegisterButton";
 import styles from "./styles/post-registration.module.css";
 import { useNavigate } from "react-router-dom";
 

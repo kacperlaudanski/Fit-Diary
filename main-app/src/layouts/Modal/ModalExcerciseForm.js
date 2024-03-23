@@ -1,8 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom";
-import Form from "../Form/FormWrapper";
+import Form from '../../components/FormWrapper/FormWrapper';
 import styles from "./styles/modals.module.css";
-import Input from "../Input/Input";
+import Input from "../../components/Input/Input";
 import {
   faRepeat,
   faDumbbell,
@@ -77,7 +76,7 @@ const ModalExcerciseForm = (props) => {
 
 const FormExcerciseBackdrop = (props) => {
   return (
-    <React.Fragment>
+    <>
       {ReactDOM.createPortal(
         <Overlay />,
         document.getElementById("overlay-root")
@@ -95,7 +94,7 @@ const FormExcerciseBackdrop = (props) => {
         />,
         document.getElementById("excercise-modal-form-root")
       )}
-    </React.Fragment>
+    </>
   );
 };
 

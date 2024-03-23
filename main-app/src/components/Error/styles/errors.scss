@@ -1,0 +1,34 @@
+@mixin flex-setup($align-items, $justify-content){
+  display:flex; 
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: column;
+}
+
+.error_message {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.loading_error_container {
+  width: 100%;
+  height: auto;
+  background-color: rgb(74, 78, 105);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 2em;
+  @include flex-setup(center, center);
+  color: rgba(255, 255, 255, 0.558);
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+    margin: 1em;
+  }
+}
