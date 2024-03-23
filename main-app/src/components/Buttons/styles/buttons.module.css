@@ -19,4 +19,19 @@
   background-color: rgba(255, 133, 208, 0.588);
 }
 
+.add_training_button {
+  width: 15%;
+  height: 40px;
+  border-radius: 25px;
+  background-color: rgb(247, 164, 116);
+  border: 1px solid #fff;
+  color: #fff;
+  transition: 0.3s linear;
+  cursor: pointer;
+}
+
+.add_training_button:hover {
+  background-color: rgba(247, 164, 116, 0.552);
+}
+
 /*# sourceMappingURL=buttons.module.css.map */
