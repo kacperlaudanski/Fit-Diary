@@ -1,7 +1,6 @@
-import React from "react";
 import Input from "../Input/Input";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import styles from '../../../pages/Main/styles/main.module.css'
+import styles from '../../pages/Main/styles/main.module.css'
 
 const ButtonSearch = (props) => {
   return (

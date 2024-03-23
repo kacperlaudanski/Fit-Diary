@@ -1,9 +1,9 @@
-import Navbar from "../../components/Features/Navbar/Navbar";
+import Navbar from "../../layouts/Navbar/Navbar";
 import { NavLink } from "react-router-dom";
 import Image from "../../images/man.png";
-import LandingFooter from "../../components/Features/Footers/LandingFooter";
+import LandingFooter from "../../layouts/Footers/LandingFooter";
 import styles from "./styles/landing.module.css";
-import navstyles from "../../components/Features/Navbar/styles/navbar.module.css";
+import navstyles from "../../layouts/Navbar/styles/navbar.module.css";
 
 function Landing() {
   return (

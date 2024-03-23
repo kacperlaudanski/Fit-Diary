@@ -1,0 +1,47 @@
+@mixin flex-setup($align-items, $justify-content, $flex-direction){
+    display:flex; 
+    align-items: $align-items;
+    justify-content: $justify-content;
+    flex-direction: $flex-direction;
+  }
+
+.error_page {
+    width: 100%;
+    height: 100vh;
+    background: rgb(131, 58, 180);
+    background: linear-gradient(
+      90deg,
+      rgba(131, 58, 180, 1) 0%,
+      rgba(253, 29, 29, 1) 50%,
+      rgba(252, 176, 69, 1) 100%
+    );
+    color: rgb(255, 255, 255);
+    @include flex-setup(center, center, column); 
+  
+    .error_container {
+      width: 70%;
+      height: auto;
+      @include flex-setup(center, center, column); 
+  
+      .error_header {
+        font-size: 10rem;
+        font-family: "Pacifico", cursive;
+      }
+  
+      .error_button {
+        width: 80%;
+        height: 40px;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 25px;
+        color: rgb(255, 255, 255);
+        margin-top: 1em;
+        background-color: rgb(247, 164, 116);
+        transition: 0.3s linear;
+        cursor: pointer;
+      }
+  
+      .error_button:hover {
+        background-color: rgba(247, 164, 116, 0.552);
+      }
+    }
+  }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import UserAvatar from '../../../images/user.png'
+import UserAvatar from '../../images/user.png'
 import navStyles from "./styles/navbar.module.css";
 import { getAuth, signOut } from "firebase/auth";
 

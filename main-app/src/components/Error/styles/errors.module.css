@@ -1,0 +1,30 @@
+.error_message {
+  color: red;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.loading_error_container {
+  width: 100%;
+  height: auto;
+  background-color: rgb(74, 78, 105);
+  border-radius: 15px;
+  box-sizing: border-box;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.558);
+}
+.loading_error_container h1 {
+  font-size: 4rem;
+}
+.loading_error_container p {
+  font-size: 1.3rem;
+  margin: 1em;
+}
+
+/*# sourceMappingURL=errors.module.css.map */

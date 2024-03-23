@@ -1,32 +1,3 @@
-.error_message {
-  color: red;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 10px;
-}
-
-.loading_error_container {
-  width: 100%;
-  height: auto;
-  background-color: rgb(74, 78, 105);
-  border-radius: 15px;
-  box-sizing: border-box;
-  padding: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  color: rgba(255, 255, 255, 0.558);
-}
-.loading_error_container h1 {
-  font-size: 4rem;
-}
-.loading_error_container p {
-  font-size: 1.3rem;
-  margin: 1em;
-}
-
 .error_page {
   width: 100%;
   height: 100vh;
@@ -38,7 +9,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.error_page .container {
+.error_page .error_container {
   width: 70%;
   height: auto;
   display: flex;
@@ -46,11 +17,11 @@
   justify-content: center;
   flex-direction: column;
 }
-.error_page .container h1 {
+.error_page .error_container .error_header {
   font-size: 10rem;
   font-family: "Pacifico", cursive;
 }
-.error_page .container button {
+.error_page .error_container .error_button {
   width: 80%;
   height: 40px;
   border: 1px solid rgb(255, 255, 255);
@@ -61,8 +32,8 @@
   transition: 0.3s linear;
   cursor: pointer;
 }
-.error_page .container button:hover {
+.error_page .error_container .error_button:hover {
   background-color: rgba(247, 164, 116, 0.552);
 }
 
-/*# sourceMappingURL=errors.module.css.map */
+/*# sourceMappingURL=error.module.css.map */

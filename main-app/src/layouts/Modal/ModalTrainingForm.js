@@ -1,8 +1,7 @@
-import React from "react";
 import ReactDOM from "react-dom";
 import { Overlay } from "./ModalExcerciseForm";
-import Input from "../Input/Input";
-import Form from "../Form/FormWrapper";
+import Input from "../../components/Input/Input";
+import Form from "../../components/FormWrapper/FormWrapper";
 import styles from "./styles/modals.module.css";
 import { faCalendar, faFile } from "@fortawesome/free-regular-svg-icons";
 
@@ -51,7 +50,7 @@ const ModalTrainingForm = (props) => {
 
 const FormTrainingBackdrop = (props) => {
   return (
-    <React.Fragment>
+    <>
       {ReactDOM.createPortal(
         <Overlay />,
         document.getElementById("overlay-root")
@@ -67,7 +66,7 @@ const FormTrainingBackdrop = (props) => {
         />,
         document.getElementById("training-modal-form-root")
       )}
-    </React.Fragment>
+    </>
   );
 };
 

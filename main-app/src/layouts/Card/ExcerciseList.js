@@ -7,10 +7,10 @@ import {
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
 import Exercise from "./Exercise"
-import Loader from "../Features/Loader/Loader";
-import LoadingError from "../Features/Error/LoadingError";
+import Loader from "../../components/Loader/Loader";
+import LoadingError from "../../components/Error/LoadingError";
 import { useNavigate } from "react-router-dom";
-import EmptyExercise from '../Features/EmptyBox/EmptyExercise'
+import EmptyExercise from '../EmptyBox/EmptyExercise'
 
 export default function ExcerciseList({ path, editExHandler }) {
   const navigate = useNavigate();
