@@ -1,0 +1,28 @@
+.search_input_group {
+  width: 30%;
+  background-color: #fff;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+}
+.search_input_group .search_input_icon {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search_input_group input[type=search]::-webkit-search-decoration,
+.search_input_group input[type=search]::-webkit-search-cancel-button,
+.search_input_group input[type=search]::-webkit-search-results-button,
+.search_input_group input[type=search]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+.search_input_group .search_input {
+  width: 90%;
+  height: 40px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  outline: none;
+}
+
+/*# sourceMappingURL=search.module.css.map */

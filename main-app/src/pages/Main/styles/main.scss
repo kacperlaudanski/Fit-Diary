@@ -24,7 +24,7 @@
   @include flex-setup(center, space-between);
   flex-direction: column;
 
-  .button_search_container {
+  .main_search_container {
     width: 80%;
     height: auto;
     @include flex-setup(center, space-between);
@@ -33,49 +33,6 @@
     padding: 2em;
     background-color: #ffffff43;
     border-radius: 15px;
-
-    .add_training_button {
-      width: 15%;
-      height: 40px;
-      border-radius: 25px;
-      background-color: rgb(247, 164, 116);
-      border: 1px solid #fff;
-      color: #fff;
-      transition: 0.3s linear;
-      cursor: pointer;
-    }
-
-    .add_training_button:hover {
-      background-color: rgba(247, 164, 116, 0.552);
-    }
-
-    .search_input_group {
-      width: 30%;
-      background-color: #fff;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-
-      .icon_box {
-        width: 10%;
-        @include flex-setup(center, center);
-      }
-
-      input[type="search"]::-webkit-search-decoration,
-      input[type="search"]::-webkit-search-cancel-button,
-      input[type="search"]::-webkit-search-results-button,
-      input[type="search"]::-webkit-search-results-decoration {
-        -webkit-appearance: none;
-      }
-
-      .search_input {
-        width: 90%;
-        height: 40px;
-        border: none;
-        background-color: rgb(255,255,255);
-        outline: none;
-      }
-    }
   }
 }
 

@@ -4,16 +4,17 @@ import { v4 as uuidv4 } from "uuid";
 import { AuthContext } from "../../context/auth-context";
 import Navbar from "../../layouts/Navbar/Navbar";
 import TrainingList from "../../layouts/Card/TrainingList";
-import TrainingForm from "../../layouts/Modal/ModalTrainingForm";
-import ExcerciseForm from "../../layouts/Modal/ModalExcerciseForm";
+import TrainingForm from "../../layouts/Modals/ModalTrainingForm";
+import ExcerciseForm from "../../layouts/Modals/ModalExcerciseForm";
 import MainFooter from "../../layouts/Footers/MainFooter";
 import ExerciseReducer from "./exercise-reducer";
 import { doc, setDoc, updateDoc } from "@firebase/firestore";
 import { db } from "../../firebase";
 import styles from "./styles/main.module.css";
 import navStyles from "../../layouts/Navbar/styles/navbar.module.css";
-import ButtonSearch from "../../components/Buttons/Button-Search-Bar";
 import MainNavbar from "../../layouts/Navbar/MainNavbar";
+import AddTrainingBtn from "../../components/Buttons/AddTrainingBtn";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 const DEFAULT_EXCERCISE = {
   excerciseId: null,
@@ -168,7 +169,7 @@ const Main = () => {
   return (
     <main className={styles.main_container}>
       <Navbar elementsClass={navStyles.main_navbar}>
-        <MainNavbar /> 
+        <MainNavbar />
       </Navbar>
       {isTrainingFormSelected && (
         <TrainingForm
@@ -192,18 +193,20 @@ const Main = () => {
           action_btn={isUserEditing ? "Edit Exercise" : "Add Exercise"}
         />
       )}
-      <ButtonSearch
-        trainingAddFormHandler={trainingAddFormHandler}
-        query={searchQuery}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <div className={styles.main_search_container}>
+        <AddTrainingBtn trainingAddFormHandler={trainingAddFormHandler} />
+        <SearchBar
+          query={searchQuery}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
       <TrainingList
         searchQuery={searchQuery}
         setEditState={setEditState}
         setTrainingForm={setTrainingForm}
         setCurrentTraining={setCurrentTraining}
         setExcerciseForm={setExcerciseForm}
-        setCurrentEx = {setCurrentEx}
+        setCurrentEx={setCurrentEx}
       />
       <MainFooter />
     </main>

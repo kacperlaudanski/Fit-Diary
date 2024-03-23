@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import styles from "./styles/card.module.css";
 import TrainingCard from "./TrainingCard";
@@ -49,7 +49,7 @@ const TrainingList = ({
     lastTrainingIndex
   );
   return (
-    <React.Fragment>
+    <>
       <div className={styles.training_list}>
         {filteredTrainings?.length === 0 && <EmptyTraining />}
         {trainingError && <LoadingError error={trainingError} />}
@@ -91,7 +91,7 @@ const TrainingList = ({
           currentPage={currentPage}
         />
       )}
-    </React.Fragment>
+    </>
   );
 };
 

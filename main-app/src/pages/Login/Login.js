@@ -9,17 +9,7 @@ import { auth } from "../../firebase";
 import { faEnvelope, faKey } from "@fortawesome/free-solid-svg-icons";
 import { AuthContext } from "../../context/auth-context";
 import WorkoutImg from "../../images/workout.png";
-
-const loginReducer = (state, action) => {
-  switch (action.type) {
-    case "EMAIL":
-      return { ...state, email: action.payload };
-    case "PASSWORD":
-      return { ...state, password: action.payload };
-    default:
-      return state;
-  }
-};
+import loginReducer from './login-reducer'; 
 
 const DEFAULT_VALUES = {
   email: null,
