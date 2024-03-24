@@ -210,7 +210,7 @@ const Main = () => {
       />
       <MainFooter />
     </main>
-  );
-};
+  )
+}
 
 export default Main;

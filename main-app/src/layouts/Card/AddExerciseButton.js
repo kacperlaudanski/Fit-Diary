@@ -1,12 +1,11 @@
-import React from "react";
 import styles from './styles/card.module.css'
 
-const AddEx = (props) => {
+const AddExerBtn = (props) => {
   return (
     <button
       id={props.id}
       type="button"
-      className={styles.add_excercise_button}
+      className={styles.add_exer_btn}
       onClick={props.onClick}
     >
       + Add Exercise
@@ -14,4 +13,4 @@ const AddEx = (props) => {
   );
 };
 
-export default AddEx;
+export default AddExerBtn;
