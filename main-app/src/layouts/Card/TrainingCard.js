@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import styles from "./styles/card.module.css";
-import AddEx from "./AddExerciseButton";
+import AddExBtn from "./AddExerciseButton";
 import ExerciseTable from "./ExerciseTable";
 import { db } from "../../firebase";
 import { doc, deleteDoc } from "@firebase/firestore";
@@ -24,7 +24,7 @@ const TrainingCard = (props) => {
   return (
     <div className={styles.training_card_container}>
       <div className={styles.training_card}>
-        <div className={styles.action_buttons}>
+        <div className={styles.training_card_action_btn}>
           <button
             onClick={props.editHandler}
             className={styles.edit_btn_white}
@@ -36,15 +36,15 @@ const TrainingCard = (props) => {
             id={props.deleteBtnId}
           ></button>
         </div>
-        <div className={styles.training_card_date}>
+        <div className={styles.training_card_date_label}>
           <FontAwesomeIcon icon={faCalendarDays} />
-          <h3 className={styles.date}>{props.date}</h3>
+          <h3 className={styles.training_card_date}>{props.date}</h3>
         </div>
         <h1 className={styles.training_card_title}>{props.title}</h1>
         <ExerciseTable />
         {props.children}
       </div>
-      <AddEx onClick={props.onClick} id={props.exBtnId} />
+      <AddExBtn onClick={props.onClick} id={props.exBtnId} />
     </div>
   );
 };

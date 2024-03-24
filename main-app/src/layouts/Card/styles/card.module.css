@@ -27,14 +27,14 @@
   overflow: hidden;
   z-index: 1;
 }
-.training_list .training_card_container .training_card .action_buttons {
+.training_list .training_card_container .training_card .training_card_action_btn {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1em;
 }
-.training_list .training_card_container .training_card .action_buttons button {
+.training_list .training_card_container .training_card .training_card_action_btn button {
   width: 20px;
   height: 20px;
   font-size: 1.5rem;
@@ -46,13 +46,13 @@
   border: none;
   cursor: pointer;
 }
-.training_list .training_card_container .training_card .action_buttons .edit_btn_white {
+.training_list .training_card_container .training_card .training_card_action_btn .edit_btn_white {
   background-image: url("../../../images/editBtn-white.png");
 }
-.training_list .training_card_container .training_card .action_buttons .delete_btn_white {
+.training_list .training_card_container .training_card .training_card_action_btn .delete_btn_white {
   background-image: url("../../../images/close-white.png");
 }
-.training_list .training_card_container .training_card .training_card_date {
+.training_list .training_card_container .training_card .training_card_date_label {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -66,10 +66,10 @@
   border-radius: 5px;
   overflow: hidden;
 }
-.training_list .training_card_container .training_card .training_card_date .date {
+.training_list .training_card_container .training_card .training_card_date_label .training_card_date {
   margin-left: 0.5em;
 }
-.training_list .training_card_container .training_card .stats_table {
+.training_list .training_card_container .training_card .exer_stats_table {
   width: 100%;
   height: 60px;
   margin-top: 2em;
@@ -81,28 +81,28 @@
   background-color: rgba(255, 255, 255, 0.247);
   border-radius: 10px;
 }
-.training_list .training_card_container .training_card .stats_table .table_col {
+.training_list .training_card_container .training_card .exer_stats_table .exer_table_col {
   min-width: 16.7%;
   height: auto;
   box-sizing: border-box;
   border-right: 1px solid rgba(255, 255, 255, 0.367);
 }
-.training_list .training_card_container .training_card .stats_table .last_stat {
+.training_list .training_card_container .training_card .exer_stats_table .exer_last_stat {
   border: none;
 }
-.training_list .training_card_container .training_card .ex_container {
+.training_list .training_card_container .training_card .exer_container {
   width: 100%;
   min-height: 50px;
   display: flex;
 }
-.training_list .training_card_container .training_card .ex_container .ex_col {
+.training_list .training_card_container .training_card .exer_container .exer_col {
   width: 20%;
   box-sizing: border-box;
   padding: 1em;
-  border: 1px solid #fff;
+  border: 1px solid rgb(255, 255, 255);
   text-align: center;
 }
-.training_list .training_card_container .training_card .ex_container .action_ex_col {
+.training_list .training_card_container .training_card .exer_container .exer_col_action {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -111,7 +111,7 @@
   background-color: rgba(255, 255, 255, 0.578);
   border-radius: 0 10px 10px 0;
 }
-.training_list .training_card_container .training_card .ex_container .action_ex_col button {
+.training_list .training_card_container .training_card .exer_container .exer_col_action .exer_action_btn {
   font-size: 1.3rem;
   color: rgb(255, 255, 255);
   background-position: center;
@@ -123,13 +123,13 @@
   border: none;
   cursor: pointer;
 }
-.training_list .training_card_container .training_card .ex_container .action_ex_col .edit_btn {
+.training_list .training_card_container .training_card .exer_container .exer_col_action .exer_edit_btn {
   background-image: url("../../../images/editBtn.png");
 }
-.training_list .training_card_container .training_card .ex_container .action_ex_col .delete_btn {
+.training_list .training_card_container .training_card .exer_container .exer_col_action .exer_delete_btn {
   background-image: url("../../../images/close.png");
 }
-.training_list .training_card_container .add_excercise_button {
+.training_list .training_card_container .add_exer_btn {
   width: 100%;
   height: 60px;
   position: relative;
@@ -143,7 +143,7 @@
   color: rgb(255, 255, 255);
   transition: 0.3s linear;
 }
-.training_list .training_card_container .add_excercise_button:hover {
+.training_list .training_card_container .add_exer_btn:hover {
   background-color: rgba(183, 2, 255, 0.665);
   cursor: pointer;
 }

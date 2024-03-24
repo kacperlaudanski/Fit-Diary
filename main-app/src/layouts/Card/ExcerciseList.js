@@ -1,16 +1,12 @@
-import React, { useCallback } from "react";
-import {
-  collection,
-  doc,
-  deleteDoc,
-} from "@firebase/firestore";
+import { useCallback } from "react";
+import { collection, doc, deleteDoc } from "@firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../firebase";
-import Exercise from "./Exercise"
+import Exercise from "./Exercise";
 import Loader from "../../components/Loader/Loader";
 import LoadingError from "../../components/Error/LoadingError";
 import { useNavigate } from "react-router-dom";
-import EmptyExercise from '../EmptyBox/EmptyExercise'
+import EmptyExercise from "../EmptyBox/EmptyExercise";
 
 export default function ExcerciseList({ path, editExHandler }) {
   const navigate = useNavigate();
